@@ -17,12 +17,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract void setActivityBinding();
 
-    /**
-     * set viewmodel
-     * @return
-     */
-    protected abstract void setViewModel();
-
 
     /**
      * Override onCreate method
@@ -37,7 +31,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
 
         setActivityBinding();
-        setViewModel();
     }
-
 }
