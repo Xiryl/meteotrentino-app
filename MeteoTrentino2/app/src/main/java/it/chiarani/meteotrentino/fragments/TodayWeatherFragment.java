@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import it.chiarani.meteotrentino.R;
+import it.chiarani.meteotrentino.databinding.FragmentSevenDaysWeatherBinding;
 
 public class TodayWeatherFragment extends Fragment {
+
 
     public TodayWeatherFragment() {
     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="map_marker_dimen">40dp</dimen>
+    <dimen name="fragment_seven_days_mr_location">32dp</dimen>
+    <dimen name="fragment_seven_days_txt_size_location">30sp</dimen>
+    <dimen name="fragment_seven_days_txt_size_description">20sp</dimen>
+</resources>
