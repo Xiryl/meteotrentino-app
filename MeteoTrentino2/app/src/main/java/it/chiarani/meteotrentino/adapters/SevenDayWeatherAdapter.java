@@ -13,7 +13,6 @@ import java.util.List;
 
 import it.chiarani.meteotrentino.R;
 import it.chiarani.meteotrentino.api.ForecastModel.Giorno;
-import it.chiarani.meteotrentino.databinding.ItemSevenDayWeatherBinding;
 import it.chiarani.meteotrentino.utils.DayConverter;
 import it.chiarani.meteotrentino.utils.IconConverter;
 
@@ -46,7 +45,7 @@ public class SevenDayWeatherAdapter extends RecyclerView.Adapter<SevenDayWeather
             icForecast = itemView.findViewById(R.id.item_seven_day_weather_ic_weather);
         }
     }
-    
+
     @Override
     public void onBindViewHolder(@NonNull SevenDayWeatherAdapter.ViewHolder holder, int position) {
         holder.txtDay.setText(DayConverter.ExtractDayFromDate(mItems.get(position).getGiorno()));
@@ -55,7 +54,6 @@ public class SevenDayWeatherAdapter extends RecyclerView.Adapter<SevenDayWeather
         holder.txtDate.setText(DayConverter.convertDate(mItems.get(position).getGiorno()));
         holder.icForecast.setBackgroundResource(IconConverter.getIconFromId(mItems.get(position).getIdIcona()));
     }
-
 
     @Override
     public int getItemCount() {

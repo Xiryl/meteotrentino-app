@@ -22,6 +22,7 @@ import it.chiarani.meteotrentino.AppExecutors;
 import it.chiarani.meteotrentino.MeteoTrentinoApp;
 import it.chiarani.meteotrentino.R;
 import it.chiarani.meteotrentino.adapters.SevenDayWeatherAdapter;
+import it.chiarani.meteotrentino.api.ForecastModel.Forecast;
 import it.chiarani.meteotrentino.databinding.FragmentSevenDaysWeatherBinding;
 import it.chiarani.meteotrentino.db.AppDatabase;
 import it.chiarani.meteotrentino.utils.DayConverter;
@@ -58,14 +59,15 @@ public class SevenDaysWeatherFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(forecasts -> {
 
-                    binding.fragmentSevenDaysWeatherTxtLocation.setText(forecasts.get(0).getPrevisione().get(0).getLocalita());
-                    binding.fragmentSevenDaysWeatherTxtForecast.setText(forecasts.get(0).getPrevisione().get(0).getGiorni().get(0).getDescIcona());
-                    binding.fragmentSevenDaysWeatherTxtDay.setText(DayConverter.ExtractDayFromDate(forecasts.get(0).getPrevisione().get(0).getGiorni().get(0).getGiorno()));
+                    Forecast tmpForecast = forecasts.get(forecasts.size() - 1);
+                    binding.fragmentSevenDaysWeatherTxtLocation.setText(tmpForecast.getPrevisione().get(0).getLocalita());
+                    binding.fragmentSevenDaysWeatherTxtForecast.setText(tmpForecast.getPrevisione().get(0).getGiorni().get(0).getDescIcona());
+                    binding.fragmentSevenDaysWeatherTxtDay.setText(DayConverter.ExtractDayFromDate(tmpForecast.getPrevisione().get(0).getGiorni().get(0).getGiorno()));
 
                     LinearLayoutManager linearLayoutManagerTags = new LinearLayoutManager(getActivity().getApplicationContext());
                     linearLayoutManagerTags.setOrientation(RecyclerView.VERTICAL);
                     binding.fragmentSevenDaysWeatherRv.setLayoutManager(linearLayoutManagerTags);
-                    mAdapter = new SevenDayWeatherAdapter(forecasts.get(0).getPrevisione().get(0).getGiorni());
+                    mAdapter = new SevenDayWeatherAdapter(tmpForecast.getPrevisione().get(0).getGiorni());
                     binding.fragmentSevenDaysWeatherRv.setAdapter(mAdapter);
                 }, throwable -> {
                     Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();

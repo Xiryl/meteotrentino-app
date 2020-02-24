@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_seven_day_weather_ic_weather"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="@+id/item_seven_day_weather_txt_slot_text"
+            app:layout_constraintStart_toStartOf="@+id/item_seven_day_weather_txt_slot_text"
+            app:layout_constraintTop_toBottomOf="@+id/item_seven_day_weather_txt_slot_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_seven_day_weather_txt_slot_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="3dp"
+            android:fontFamily="@font/os_regular"
+            android:text="00:00"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/item_seven_day_weather_txt_slot_text"
+            app:layout_constraintStart_toStartOf="@+id/item_seven_day_weather_txt_slot_text"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_seven_day_weather_txt_slot_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/os_regular"
+            android:text="sera"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/item_seven_day_weather_txt_slot_time"
+            app:layout_constraintStart_toStartOf="@+id/item_seven_day_weather_txt_slot_time"
+            app:layout_constraintTop_toBottomOf="@+id/item_seven_day_weather_txt_slot_time" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_seven_day_weather_txt_slot_temperatures"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/os_regular"
+            android:text="sera"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/item_seven_day_weather_ic_weather"
+            app:layout_constraintStart_toStartOf="@+id/item_seven_day_weather_ic_weather"
+            app:layout_constraintTop_toBottomOf="@+id/item_seven_day_weather_ic_weather" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
