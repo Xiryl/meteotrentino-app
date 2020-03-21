@@ -9,17 +9,17 @@ import java.lang.reflect.Type;
 
 import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataClouds;
 import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataMain;
-import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataWind;
+import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataSys;
 
-public class OpenWeatherDataCloudsConverter {
+public class OpenWeatherDataSysConverter {
     @TypeConverter
-    public static OpenWeatherDataClouds fromString(String value) {
-        Type listType = new TypeToken<OpenWeatherDataMain>() {}.getType();
+    public static OpenWeatherDataSys fromString(String value) {
+        Type listType = new TypeToken<OpenWeatherDataSys>() {}.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public static String fromOpenWeatherDataClouds(OpenWeatherDataClouds data) {
+    public static String fromOpenWeatherDataSys(OpenWeatherDataSys data) {
         Gson gson = new Gson();
         return gson.toJson(data);
     }

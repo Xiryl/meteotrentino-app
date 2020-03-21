@@ -7,18 +7,19 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
+import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataClouds;
 import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataMain;
 import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataWind;
 
-public class OpenWeatherDataWindConverter {
+public class OpenWeatherDataCloudsConverter {
     @TypeConverter
-    public static OpenWeatherDataWind fromString(String value) {
-        Type listType = new TypeToken<OpenWeatherDataMain>() {}.getType();
+    public static OpenWeatherDataClouds fromString(String value) {
+        Type listType = new TypeToken<OpenWeatherDataClouds>() {}.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public static String fromOpenWeatherDataWind(OpenWeatherDataWind data) {
+    public static String fromOpenWeatherDataClouds(OpenWeatherDataClouds data) {
         Gson gson = new Gson();
         return gson.toJson(data);
     }
