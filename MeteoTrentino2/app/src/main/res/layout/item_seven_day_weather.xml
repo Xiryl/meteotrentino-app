@@ -25,7 +25,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:text="ciaooo"
-            android:fontFamily="@font/os_regular"
+            android:fontFamily="@font/os_semibold"
             android:textColor="@android:color/black"
             android:textSize="@dimen/fragment_seven_days_txt_size_description"
             app:layout_constraintStart_toEndOf="@id/item_seven_day_weather_ic_weather"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="ciaoo"
-            android:fontFamily="@font/os_bold"
+            android:fontFamily="@font/os_regular"
             android:textColor="@android:color/darker_gray"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@id/item_seven_day_weather_ic_weather"
@@ -53,7 +53,7 @@
             android:fontFamily="@font/os_regular"
             android:text="ciaoo"
             android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item_seven_day_weather_txt_temperatures" />
 
@@ -66,7 +66,7 @@
             android:fontFamily="@font/os_regular"
             android:text="ciaoo"
             android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

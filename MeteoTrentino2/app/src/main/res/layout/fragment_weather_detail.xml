@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_vento_valle_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_regular"
+            android:text="Vento valle: direz. / intensità"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_vento_valle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_vento_valle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_vento_valle_desc"
+            app:layout_constraintStart_toEndOf="@+id/fragment_weather_detail_ic_temp_max4"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_temp_max4"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="9dp"
+            android:src="@drawable/ic_wind"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_vento_valle"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_vento_valle_desc"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_temp_max3"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_wind"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_vento_quota"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_vento_quota_desc"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min2" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_temp_max2"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_drop"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_temp_max"
+            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_temp_max_descr2"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_int_prec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_temp_max_min2"
+            app:layout_constraintHorizontal_bias="0.481"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_temp_max_min2"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_zero2"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_flash"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_perc_temp"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_zero_desc2"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_perc_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_zero_desc2"
+            app:layout_constraintStart_toEndOf="@+id/fragment_weather_detail_ic_zero2"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_zero_desc2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="Prob. temporali"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintHorizontal_bias="0.547"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_perc_temp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_temp_max_min2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="Intensita Precip."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_int_prec" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_prob_prec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_temp_max_descr2"
+            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintStart_toEndOf="@+id/fragment_weather_detail_ic_temp_max2"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_vento_quota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_vento_quota_desc"
+            app:layout_constraintStart_toEndOf="@+id/fragment_weather_detail_ic_temp_max3"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_vento_quota_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/os_regular"
+            android:text="Vento quota: direz. / intensità"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_vento_quota"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_temp_max_descr2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="Prob. Precip."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintHorizontal_bias="0.521"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_prob_prec" />
+
+        <View
+            android:id="@+id/breakLine"
+            android:layout_width="30dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="205dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="330dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="74dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_weather"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/breakLine" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="38dp"
+            android:fontFamily="@font/os_regular"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/fragment_seven_days_txt_size_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/breakLine" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_time_descr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/os_regular"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_time" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_title_previsione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Previsione"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/fragment_seven_days_txt_size_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_ic_weather" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_desc_previsione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_regular"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_previsione"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_title_dati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Dati meteorologici"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/fragment_seven_days_txt_size_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.013"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_desc_previsione" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_temp_max_descr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="T. massima"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_ic_temp_max" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_temp_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_temp_max_descr"
+            app:layout_constraintStart_toEndOf="@+id/fragment_weather_detail_ic_temp_max"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_dati" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_temp_max"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_thermometer"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_temp_max"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_temp_max_descr"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_dati" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_temp_min"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_thermometer"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_temp_min"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_temp_max_min"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_dati" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_temp_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_temp_max_min"
+            app:layout_constraintStart_toEndOf="@+id/fragment_weather_detail_ic_temp_min"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_dati" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_temp_max_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="T. minima"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_ic_temp_min" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_weather_detail_ic_zero"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/ic_ice_crystal"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_zero"
+            app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_zero_desc"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_dati" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_zero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/fragment_weather_detail_txt_zero_desc"
+            app:layout_constraintStart_toEndOf="@+id/fragment_weather_detail_ic_zero"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_dati" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_weather_detail_txt_zero_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="Zero termico"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_ic_zero" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

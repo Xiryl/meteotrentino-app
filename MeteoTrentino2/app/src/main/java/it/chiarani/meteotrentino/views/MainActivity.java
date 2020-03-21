@@ -9,13 +9,15 @@ import androidx.databinding.DataBindingUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import it.chiarani.meteotrentino.AppExecutors;
 import it.chiarani.meteotrentino.MeteoTrentinoApp;
 import it.chiarani.meteotrentino.R;
 import it.chiarani.meteotrentino.api.MeteoTrentinoAPI;
+import it.chiarani.meteotrentino.api.OpenWeatherDataAPI;
 import it.chiarani.meteotrentino.api.RetrofitAPI;
+import it.chiarani.meteotrentino.config.Config;
 import it.chiarani.meteotrentino.databinding.ActivityMainBinding;
 import it.chiarani.meteotrentino.db.AppDatabase;
 import it.chiarani.meteotrentino.utils.GPSUtils;
@@ -27,6 +29,7 @@ public class MainActivity extends BaseActivity {
     private AppExecutors mAppExecutors;
     private AppDatabase mAppDatabase;
     private final CompositeDisposable mDisposable = new CompositeDisposable();
+    private String[] mLocation;
 
     @Override
     protected int getLayoutID() {
@@ -47,24 +50,28 @@ public class MainActivity extends BaseActivity {
         accessLocation(isGPSGranted);
 
         RetrofitAPI meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
+        RetrofitAPI openWeatherDataAPI = OpenWeatherDataAPI.getInstance();
 
         mAppExecutors = ((MeteoTrentinoApp)getApplication()).getRepository().getAppExecutors();
         mAppDatabase = ((MeteoTrentinoApp)getApplication()).getRepository().getDatabase();
 
 
-        mDisposable.add(meteoTrentinoAPI.getForecast("ARCO")
+        Consumer<Throwable> throwableConsumer = throwable -> Toast.makeText(this, "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
+
+        mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(mLocation[0])
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(model -> {
-
+                .flatMap(model -> {
                     mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(model));
-
-                    Toast.makeText(this, "Ok data", Toast.LENGTH_SHORT).show();
-
+                    return openWeatherDataAPI.getOpenWeatherDataForecast(Config.OPENWEATHERDATA_API_KEY, mLocation[1], mLocation[2])
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread());
+                })
+                .subscribe(model -> {
+                    mAppExecutors.diskIO().execute(() -> mAppDatabase.openWeatherDataForecastDao().insert(model));
                     this.startActivity(new Intent(this, HomeActivity.class));
-                }, throwable -> {
-                    Toast.makeText(this, "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
-                }));
+                    this.finish();
+                }, throwableConsumer));
     }
 
     @Override
@@ -76,14 +83,14 @@ public class MainActivity extends BaseActivity {
     private void accessLocation(boolean isGPSGranted) {
         if(isGPSGranted) {
             // access to gps location
-            String loc = GPSUtils.getLocation(this);
-            boolean locationExists = Localities.checkIfLocationExists(loc);
+            mLocation = GPSUtils.getLocation(this);
+            boolean locationExists = Localities.checkIfLocationExists(mLocation[0]);
             if(locationExists) {
-                Toast.makeText(this, String.format("Rilevato: %s", loc), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, String.format("Rilevato: %s", mLocation[0]), Toast.LENGTH_SHORT).show();
                 // download data
             } else {
                 // use previous location
-                Toast.makeText(this, String.format("%s non valido", loc), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, String.format("%s non valido", mLocation[0]), Toast.LENGTH_SHORT).show();
             }
         } else {
             GPSUtils.askGPSPermissions(this);

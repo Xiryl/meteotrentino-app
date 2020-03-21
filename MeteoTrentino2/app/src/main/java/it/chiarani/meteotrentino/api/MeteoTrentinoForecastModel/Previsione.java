@@ -1,4 +1,4 @@
-package it.chiarani.meteotrentino.api.ForecastModel;
+package it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel;
 
 import androidx.room.Entity;
 

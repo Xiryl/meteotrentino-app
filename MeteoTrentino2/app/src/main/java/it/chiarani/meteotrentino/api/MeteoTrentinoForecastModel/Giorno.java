@@ -1,4 +1,4 @@
-package it.chiarani.meteotrentino.api.ForecastModel;
+package it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

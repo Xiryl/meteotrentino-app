@@ -1,4 +1,4 @@
-package it.chiarani.meteotrentino.api.ForecastModel;
+package it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

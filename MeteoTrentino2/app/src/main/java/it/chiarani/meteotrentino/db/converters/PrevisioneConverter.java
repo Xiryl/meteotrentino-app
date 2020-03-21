@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import it.chiarani.meteotrentino.api.ForecastModel.Previsione;
+import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.Previsione;
 
 /**
  * convert all classes to json

@@ -9,15 +9,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/fragment_seven_days_weather_txt_click"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/os_regular"
+            android:text="Clicca su un giorno\nper visualizzare il bollettino"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/fragment_seven_days_txt_size_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_seven_days_weather_img_click"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_seven_days_weather_rv" />
+
+        <TextView
+            android:id="@+id/fragment_today_weather_txt_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_bold"
+            android:text="Torna alla home"
+            android:textColor="@android:color/black"
+            android:drawableLeft="@drawable/ic_back"
+            android:textSize="22sp"
+            android:drawablePadding="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView"
             android:layout_width="@dimen/map_marker_dimen"
             android:layout_height="@dimen/map_marker_dimen"
             android:layout_marginStart="@dimen/fragment_seven_days_mr_location"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:src="@drawable/ic_map_marker"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_today_weather_txt_back" />
 
         <TextView
             android:id="@+id/fragment_seven_days_weather_txt_location"
@@ -65,9 +93,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_seven_days_weather_txt_day">
+            app:layout_constraintTop_toBottomOf="@+id/fragment_seven_days_weather_txt_day" />
 
-        </androidx.recyclerview.widget.RecyclerView>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_seven_days_weather_img_click"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/ic_clicking"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_seven_days_weather_txt_click"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_seven_days_weather_rv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

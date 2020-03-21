@@ -3,6 +3,7 @@ package it.chiarani.meteotrentino.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,15 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import it.chiarani.meteotrentino.R;
-import it.chiarani.meteotrentino.api.ForecastModel.Giorno;
+import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.Giorno;
 import it.chiarani.meteotrentino.utils.DayConverter;
 import it.chiarani.meteotrentino.utils.IconConverter;
 
-public class SevenDayWeatherAdapter extends RecyclerView.Adapter<SevenDayWeatherAdapter.ViewHolder>{
+public class SevenDayWeatherAdapter extends RecyclerView.Adapter<SevenDayWeatherAdapter.ViewHolder> {
     private List<Giorno> mItems;
+    private ItemClickListener mListener;
 
-    public SevenDayWeatherAdapter(List<Giorno> items) {
+    public SevenDayWeatherAdapter(List<Giorno> items, ItemClickListener itemClickListener) {
         this.mItems = items;
+        this.mListener = itemClickListener;
     }
 
     @NonNull
@@ -31,7 +34,7 @@ public class SevenDayWeatherAdapter extends RecyclerView.Adapter<SevenDayWeather
         return new SevenDayWeatherAdapter.ViewHolder(view);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView txtDay, txtForecast, txtTemperatures, txtDate;
         ImageView icForecast;
@@ -43,6 +46,12 @@ public class SevenDayWeatherAdapter extends RecyclerView.Adapter<SevenDayWeather
             txtTemperatures = itemView.findViewById(R.id.item_seven_day_weather_txt_temperatures);
             txtDate = itemView.findViewById(R.id.item_seven_day_weather_txt_date);
             icForecast = itemView.findViewById(R.id.item_seven_day_weather_ic_weather);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            mListener.onItemClick(this.getAdapterPosition());
         }
     }
 

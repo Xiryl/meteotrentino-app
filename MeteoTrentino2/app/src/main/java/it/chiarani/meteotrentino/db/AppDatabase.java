@@ -8,16 +8,41 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
-import it.chiarani.meteotrentino.api.ForecastModel.Forecast;
+import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
+import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataClouds;
+import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataForecast;
+import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataMain;
+import it.chiarani.meteotrentino.db.converters.OpenWeatherDataCloudsConverter;
+import it.chiarani.meteotrentino.db.converters.OpenWeatherDataCoordsConverter;
+import it.chiarani.meteotrentino.db.converters.OpenWeatherDataMainConverter;
+import it.chiarani.meteotrentino.db.converters.OpenWeatherDataSysConverter;
+import it.chiarani.meteotrentino.db.converters.OpenWeatherDataWeatherConverter;
+import it.chiarani.meteotrentino.db.converters.OpenWeatherDataWindConverter;
 import it.chiarani.meteotrentino.db.converters.PrevisioneConverter;
 
-@Database(entities = {Forecast.class}, version = 1, exportSchema = false)
-@TypeConverters({PrevisioneConverter.class})
+@Database(entities =
+        {
+            MeteoTrentinoForecast.class,
+            OpenWeatherDataForecast.class
+        },
+        version = 1,
+        exportSchema = false)
+@TypeConverters(
+        {
+                PrevisioneConverter.class,
+                OpenWeatherDataCoordsConverter.class,
+                OpenWeatherDataMainConverter.class,
+                OpenWeatherDataSysConverter.class,
+                OpenWeatherDataWindConverter.class,
+                OpenWeatherDataCloudsConverter.class,
+                OpenWeatherDataWeatherConverter.class
+        })
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
 
     // DAO's
     public abstract ForecastDao forecastDao();
+    public abstract OpenWeatherDataForecastDao openWeatherDataForecastDao();
 
     /**
      * Get a singleton istance

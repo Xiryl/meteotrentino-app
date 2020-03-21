@@ -9,7 +9,7 @@ import androidx.room.Query;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import it.chiarani.meteotrentino.api.ForecastModel.Forecast;
+import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
 
 @Dao
 public interface ForecastDao {
@@ -18,19 +18,19 @@ public interface ForecastDao {
      * @param nordicDevice device
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Forecast nordicDevice);
+    void insert(MeteoTrentinoForecast nordicDevice);
 
     /**
      * Return all devices as list
      * @return
      */
-    @Query("SELECT * FROM forecast")
-    Flowable<List<Forecast>> getAsList();
+    @Query("SELECT * FROM MeteoTrentinoForecast")
+    Flowable<List<MeteoTrentinoForecast>> getAsList();
 
     /**
      * Clear the database
      */
-    @Query("DELETE FROM forecast")
+    @Query("DELETE FROM MeteoTrentinoForecast")
     void clear();
 
     /**
@@ -38,5 +38,5 @@ public interface ForecastDao {
      * @param nordicDevices
      */
     @Delete
-    void delete(List<Forecast> nordicDevices);
+    void delete(List<MeteoTrentinoForecast> nordicDevices);
 }

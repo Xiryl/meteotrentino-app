@@ -1,18 +1,15 @@
-package it.chiarani.meteotrentino.api.ForecastModel;
+package it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import it.chiarani.meteotrentino.db.converters.PrevisioneConverter;
 
-
-@Entity(tableName = "Forecast")
-public class Forecast {
+@Entity(tableName = "MeteoTrentinoForecast")
+public class MeteoTrentinoForecast {
 
     @SerializedName("fonte-da-citare")
     @Expose
