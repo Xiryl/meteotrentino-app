@@ -54,11 +54,9 @@ public class HomeActivity extends BaseActivity {
                         // Get new Instance ID token
                         String token = task.getResult().getToken();
 
-
-                        Toast.makeText(HomeActivity.this, "ok"+token, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HomeActivity.this, "Firebase Token:\n"+token, Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
     private void configureTabLayout() {

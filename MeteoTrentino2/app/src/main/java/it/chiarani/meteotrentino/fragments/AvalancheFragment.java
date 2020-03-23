@@ -3,13 +3,13 @@ package it.chiarani.meteotrentino.fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,16 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -35,17 +29,10 @@ import it.chiarani.meteotrentino.AppExecutors;
 import it.chiarani.meteotrentino.MeteoTrentinoApp;
 import it.chiarani.meteotrentino.R;
 import it.chiarani.meteotrentino.adapters.AvalancheAdapter;
-import it.chiarani.meteotrentino.adapters.SlotWeatherAdapter;
 import it.chiarani.meteotrentino.api.AvalancheAPI;
-import it.chiarani.meteotrentino.api.MeteoTrentinoAPI;
-import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.Fascia;
 import it.chiarani.meteotrentino.api.RetrofitAPI;
-import it.chiarani.meteotrentino.config.Config;
-import it.chiarani.meteotrentino.databinding.FragmentAllertBinding;
 import it.chiarani.meteotrentino.databinding.FragmentAvalancheBinding;
-import it.chiarani.meteotrentino.databinding.FragmentRadarBinding;
 import it.chiarani.meteotrentino.db.AppDatabase;
-import it.chiarani.meteotrentino.views.HomeActivity;
 
 public class AvalancheFragment extends Fragment {
 
@@ -53,7 +40,7 @@ public class AvalancheFragment extends Fragment {
 
     private AppExecutors mAppExecutors;
     private AppDatabase mAppDatabase;
-
+    private boolean zoomOut =  false;
     private final CompositeDisposable mDisposable = new CompositeDisposable();
 
     public AvalancheFragment() {
@@ -107,9 +94,20 @@ public class AvalancheFragment extends Fragment {
                         i.setData(Uri.parse(uri));
                         startActivity(i);
                     });
-                   int x = 1;
+
+                    binding.fragmentAvalancheMainImg.setOnClickListener( v -> {
+                        if(zoomOut) {
+                            binding.fragmentAvalancheMainImg.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT));
+                            binding.fragmentAvalancheMainImg.setAdjustViewBounds(true);
+                            zoomOut =false;
+                        }else{
+                            binding.fragmentAvalancheMainImg.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT));
+                            binding.fragmentAvalancheMainImg.setScaleType(ImageView.ScaleType.FIT_XY);
+                            zoomOut = true;
+                        }
+                    });
                 }, throwable -> {
-                    int y = 1;
+                    // TODO: handle error
                 }));
 
         return view;

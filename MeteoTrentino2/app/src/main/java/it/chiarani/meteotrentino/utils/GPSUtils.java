@@ -73,13 +73,9 @@ public class GPSUtils {
     public static String[] getLocation(Context context) {
         LocationManager lm = (LocationManager) context.getSystemService(LOCATION_SERVICE);
 
-        Criteria criteria = new Criteria();
-        if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (lm == null || !lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             return new String[]{"", "", ""};
         }
-
-        String bestProvider = String.valueOf(lm.getBestProvider(criteria, true)).toString();
-
 
         Location location = getLastKnownLocation(lm, context);
         double lng = location.getLongitude();

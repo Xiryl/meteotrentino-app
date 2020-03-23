@@ -1,17 +1,12 @@
 package it.chiarani.meteotrentino.views;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -36,6 +31,7 @@ public class MainActivity extends BaseActivity {
     private AppDatabase mAppDatabase;
     private final CompositeDisposable mDisposable = new CompositeDisposable();
     private String[] mLocation;
+    private RetrofitAPI meteoTrentinoAPI, openWeatherDataAPI;
 
     @Override
     protected int getLayoutID() {
@@ -47,37 +43,22 @@ public class MainActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, getLayoutID());
     }
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         boolean isGPSGranted = GPSUtils.checkGPSPermissions(this);
 
-        accessLocation(isGPSGranted);
-
-        RetrofitAPI meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
-        RetrofitAPI openWeatherDataAPI = OpenWeatherDataAPI.getInstance();
+        meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
+        openWeatherDataAPI = OpenWeatherDataAPI.getInstance();
 
         mAppExecutors = ((MeteoTrentinoApp)getApplication()).getRepository().getAppExecutors();
         mAppDatabase = ((MeteoTrentinoApp)getApplication()).getRepository().getDatabase();
 
+        accessLocation(isGPSGranted);
 
         Consumer<Throwable> throwableConsumer = throwable -> Toast.makeText(this, "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
-
-        mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(mLocation[0])
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(model -> {
-                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(model));
-                    openWeatherDataAPI.getOpenWeatherDataForecast(Config.OPENWEATHERDATA_API_KEY, mLocation[1], mLocation[2])
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(openApiModel -> {
-                                mAppExecutors.diskIO().execute(() -> mAppDatabase.openWeatherDataForecastDao().insert(openApiModel));
-                                this.startActivity(new Intent(this, HomeActivity.class));
-                                this.finish();
-                            });
-                }, throwableConsumer));
     }
 
     @Override
@@ -90,13 +71,20 @@ public class MainActivity extends BaseActivity {
         if(isGPSGranted) {
             // access to gps location
             mLocation = GPSUtils.getLocation(this);
-            boolean locationExists = Localities.checkIfLocationExists(mLocation[0]);
-            if(locationExists) {
-                Toast.makeText(this, String.format("Rilevato: %s", mLocation[0]), Toast.LENGTH_SHORT).show();
-                // download data
-            } else {
-                // use previous location
-                Toast.makeText(this, String.format("%s non valido", mLocation[0]), Toast.LENGTH_SHORT).show();
+
+            if (mLocation[0].isEmpty()) {
+                callWithLastPositionIfExists();
+            }
+
+            else {
+                boolean locationExists = Localities.checkIfLocationExists(mLocation[0]);
+                if(locationExists) {
+                    Toast.makeText(this, String.format("Rilevato: %s", mLocation[0]), Toast.LENGTH_SHORT).show();
+                    retriveDataAndNext(mLocation, meteoTrentinoAPI, openWeatherDataAPI);
+                } else {
+                    // use previous location
+                    Toast.makeText(this, String.format("%s non valido", mLocation[0]), Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             GPSUtils.askGPSPermissions(this);
@@ -116,8 +104,50 @@ public class MainActivity extends BaseActivity {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                 }
-                return;
             }
         }
+    }
+
+    @SuppressLint("CheckResult")
+    private void retriveDataAndNext(String[] mLocation, RetrofitAPI meteoTrentinoAPI, RetrofitAPI openWeatherDataAPI) {
+        mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(mLocation[0])
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(model -> {
+                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(model));
+                    openWeatherDataAPI.getOpenWeatherDataForecast(Config.OPENWEATHERDATA_API_KEY, mLocation[1], mLocation[2])
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(openApiModel -> {
+                                mAppExecutors.diskIO().execute(() -> mAppDatabase.openWeatherDataForecastDao().insert(openApiModel));
+                                this.startActivity(new Intent(this, HomeActivity.class));
+                                this.finish();
+                            });
+                }, throwable -> {
+                    // TODO: handle error
+                    int x = 1;
+                }));
+    }
+
+    private void callWithLastPositionIfExists() {
+        mDisposable.add(mAppDatabase.forecastDao().getAsList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .take(1)
+                .subscribe(model -> {
+                    if(model.size() >= 1) {
+                        String[] mLocation = Localities.getLatLngFromLocation(model.get(model.size() -1).getPrevisione().get(0).getLocalita());
+                        if(!mLocation[0].isEmpty()) {
+                            Toast.makeText(this, "GPS non attivo, carico ultima posizione: " + mLocation[0], Toast.LENGTH_LONG).show();
+                            retriveDataAndNext(mLocation, meteoTrentinoAPI, openWeatherDataAPI);
+                        }
+                    }
+                    Toast.makeText(this, "GPS non attivo, carico posizione default: TRENTO", Toast.LENGTH_LONG).show();
+                    String[] tmpLocation = {"TRENTO", "46.071322", "11.120295"};
+                    retriveDataAndNext(tmpLocation, meteoTrentinoAPI, openWeatherDataAPI);
+                }, throwable -> {
+                    // TODO: handle error
+                    int x = 1;
+                }));
     }
 }
