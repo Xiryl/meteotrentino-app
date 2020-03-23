@@ -5,7 +5,13 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -61,16 +67,16 @@ public class MainActivity extends BaseActivity {
         mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(mLocation[0])
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .flatMap(model -> {
-                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(model));
-                    return openWeatherDataAPI.getOpenWeatherDataForecast(Config.OPENWEATHERDATA_API_KEY, mLocation[1], mLocation[2])
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread());
-                })
                 .subscribe(model -> {
-                    mAppExecutors.diskIO().execute(() -> mAppDatabase.openWeatherDataForecastDao().insert(model));
-                    this.startActivity(new Intent(this, HomeActivity.class));
-                    this.finish();
+                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(model));
+                    openWeatherDataAPI.getOpenWeatherDataForecast(Config.OPENWEATHERDATA_API_KEY, mLocation[1], mLocation[2])
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(openApiModel -> {
+                                mAppExecutors.diskIO().execute(() -> mAppDatabase.openWeatherDataForecastDao().insert(openApiModel));
+                                this.startActivity(new Intent(this, HomeActivity.class));
+                                this.finish();
+                            });
                 }, throwableConsumer));
     }
 

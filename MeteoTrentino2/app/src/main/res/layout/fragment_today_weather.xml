@@ -87,9 +87,9 @@
             android:text="Umidita"
             android:textColor="@android:color/darker_gray"
             android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_today_weather_txt_rain_percentage"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toEndOf="@+id/fragment_today_weather_txt_wind_speed"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/fragment_today_weather_txt_humidity_percentage" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -139,20 +139,6 @@
             android:text="7 giorni"
             android:drawablePadding="4dp"
             android:drawableLeft="@drawable/ic_seven_calendar"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            app:layout_constraintTop_toBottomOf="@id/fragment_today_img_7days"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:id="@+id/fragment_today_btn_forecast_prob"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/map_marker_dimen"
-            android:layout_marginTop="16dp"
-            app:cornerRadius="16dp"
-            android:layout_marginEnd="32dp"
-            android:text="Bollettino"
-            android:drawablePadding="4dp"
-            android:drawableLeft="@drawable/ic_forecast_prob"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
@@ -239,8 +225,8 @@
             android:text="27 km/h"
             android:textColor="@android:color/black"
             android:textSize="15sp"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_today_weather_txt_rain_percentage"
-            app:layout_constraintStart_toEndOf="@+id/fragment_today_weather_txt_wind_speed"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/fragment_today_weather_txt_temperature" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -258,12 +244,12 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fragment_seven_days_weather_rv"
+            android:id="@+id/fragment_today_weather_rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
-            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

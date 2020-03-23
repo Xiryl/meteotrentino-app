@@ -3,7 +3,6 @@ package it.chiarani.meteotrentino.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,15 +34,15 @@ public class SlotWeatherAdapter extends RecyclerView.Adapter<SlotWeatherAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView txtTime, txtSlot, txtForecast;
+        TextView txtTime, txtSlot, txtForecast, txtTemperature;
         ImageView icWeather;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txtTime = itemView.findViewById(R.id.item_seven_day_weather_txt_slot_time);
-            txtSlot = itemView.findViewById(R.id.item_seven_day_weather_txt_slot_text);
-            icWeather = itemView.findViewById(R.id.item_seven_day_weather_ic_weather);
-            txtForecast = itemView.findViewById(R.id.item_seven_day_weather_txt_forecast);
+            txtTime = itemView.findViewById(R.id.item_day_weather_txt_slot_time);
+            txtSlot = itemView.findViewById(R.id.item_day_weather_txt_slot_text);
+            icWeather = itemView.findViewById(R.id.item_day_weather_ic_weather);
+            txtForecast = itemView.findViewById(R.id.item_day_weather_txt_forecast);
            itemView.setOnClickListener(this);
         }
 

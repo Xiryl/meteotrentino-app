@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data></data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="32dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/fragment_radar_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:drawableLeft="@drawable/ic_back"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/os_bold"
+                android:text="Torna alla home"
+                android:textColor="@android:color/black"
+                android:textSize="22sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_radar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/os_semibold"
+                android:text="Immagini Radar e Satellitari"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_radar_sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/os_semibold"
+                android:text="La velocità di caricamento può dipendere dalla tua connessione."
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15sp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_radar_title_radar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/os_regular"
+                android:text="Radar e Precipitazioni"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"/>
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/fragment_allert_anim_load_radar"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                app:lottie_rawRes="@raw/anim_loading"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                android:layout_marginTop="16dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_radar_img_radar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_radar_title_infrarosso_europa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/os_regular"
+                android:text="Infrarosso Europa"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/fragment_allert_anim_load_infrarosso_europa"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                app:lottie_rawRes="@raw/anim_loading"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                android:layout_marginTop="16dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_radar_img_infrarosso_europa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_radar_title_zona_alpina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/os_regular"
+                android:text="Zona Alpina"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/fragment_allert_anim_load_zona_alpina"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                app:lottie_rawRes="@raw/anim_loading"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                android:layout_marginTop="16dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_radar_img_zona_alpina"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_radar_title_nevicate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/os_regular"
+                android:text="Nevicate"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/fragment_allert_anim_load_nevicate"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                app:lottie_rawRes="@raw/anim_loading"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                android:layout_marginTop="16dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_radar_img_nevicate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/fragment_radar_title_nevicate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/os_regular"
+                android:text="Europa"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"/>
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/fragment_allert_anim_load_europa"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                app:lottie_rawRes="@raw/anim_loading"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
+                android:layout_marginTop="16dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/fragment_radar_img_europa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

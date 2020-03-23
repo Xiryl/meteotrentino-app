@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragment_avalanche_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_back"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/os_bold"
+            android:text="Torna alla home"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_avalanche_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Report Valanghe"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_today_img_7days"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_back" />
+
+        <com.codesgood.views.JustifiedTextView
+            android:id="@+id/fragment_avalanche_descr"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/os_semibold"
+            android:layout_marginEnd="16dp"
+            android:text="ATTENZIONE: per un report completo scarica il pdf ufficiale, altrimenti visita il sito webavalanche.report"
+            android:textColor="#F85E5E"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_title" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragment_avalanche_btn_download"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/map_marker_dimen"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:drawableLeft="@drawable/ic_information"
+            android:drawablePadding="4dp"
+            android:text="Scarica PDF"
+            app:cornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_back" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fragment_avalanche_main_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_poco_nuvoloso"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_descr" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_avalanche_img_descr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="premi per ingrandire"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_main_img" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/fragment_avalanche_anim_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_img_descr"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/anim_scan" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_avalanche_rv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_img_descr" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

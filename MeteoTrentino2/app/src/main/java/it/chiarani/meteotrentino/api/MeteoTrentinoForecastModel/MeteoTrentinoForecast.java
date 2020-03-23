@@ -11,6 +11,9 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "MeteoTrentinoForecast")
 public class MeteoTrentinoForecast {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @SerializedName("fonte-da-citare")
     @Expose
     private String fonteDaCitare;
@@ -29,8 +32,6 @@ public class MeteoTrentinoForecast {
     @SerializedName("dataPubblicazione")
     @Expose
     private String dataPubblicazione;
-
-    @PrimaryKey
     @SerializedName("idPrevisione")
     @Expose
     private Integer idPrevisione;
@@ -140,4 +141,11 @@ public class MeteoTrentinoForecast {
         this.previsione = previsione;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

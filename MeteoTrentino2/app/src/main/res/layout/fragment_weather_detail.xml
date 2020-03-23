@@ -62,10 +62,8 @@
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginTop="41dp"
-            android:layout_marginEnd="2dp"
             android:src="@drawable/ic_drop"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_weather_detail_txt_temp_max"
-            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintEnd_toStartOf="@id/fragment_weather_detail_txt_prob_prec"
             app:layout_constraintStart_toStartOf="@+id/fragment_weather_detail_txt_temp_max_descr2"
             app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_temp_max_min" />
 
@@ -276,12 +274,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_ic_weather" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.codesgood.views.JustifiedTextView
             android:id="@+id/fragment_weather_detail_txt_desc_previsione"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/os_regular"
             android:textColor="@android:color/darker_gray"

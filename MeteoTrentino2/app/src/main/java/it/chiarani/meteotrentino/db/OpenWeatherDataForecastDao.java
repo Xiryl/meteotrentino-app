@@ -14,30 +14,16 @@ import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDat
 
 @Dao
 public interface OpenWeatherDataForecastDao {
-    /**
-     * Insert a new device
-     * @param nordicDevice device
-     */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(OpenWeatherDataForecast nordicDevice);
 
-    /**
-     * Return all devices as list
-     * @return
-     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(OpenWeatherDataForecast forecast);
+
     @Query("SELECT * FROM OpenWeatherDataForecast")
     Flowable<List<OpenWeatherDataForecast>> getAsList();
 
-    /**
-     * Clear the database
-     */
     @Query("DELETE FROM OpenWeatherDataForecast")
     void clear();
 
-    /**
-     * Delete a list of devices
-     * @param nordicDevices
-     */
     @Delete
-    void delete(List<OpenWeatherDataForecast> nordicDevices);
+    void delete(List<OpenWeatherDataForecast> forecasts);
 }

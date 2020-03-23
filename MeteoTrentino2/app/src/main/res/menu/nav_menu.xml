@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/grp0" android:checkableBehavior="single" >
+        <item
+            android:id="@+id/nav_menu_allerte"
+            android:icon="@drawable/ic_warning"
+            android:title="Allerte"/>
+
+        <item
+            android:id="@+id/nav_menu_radar"
+            android:icon="@drawable/ic_radar"
+            android:title="Radar e Satellite" />
+
+        <item
+            android:id="@+id/nav_menu_bollettino"
+            android:icon="@drawable/ic_forecast_prob"
+            android:title="Probabilistico" />
+
+        <item
+            android:id="@+id/nav_menu_neve"
+            android:checked="false"
+            android:icon="@drawable/ic_avalanche"
+            android:title="Neve e Valanghe" />
+
+        <item
+            android:id="@+id/nav_menu_dati_staz"
+            android:icon="@drawable/ic_broadcast"
+            android:title="Dati Stazioni" />
+
+        <item
+            android:id="@+id/nav_menu_dighe"
+            android:icon="@drawable/ic_river"
+            android:title="Dighe e Bacini" />
+
+        <item
+            android:id="@+id/nav_menu_montagna"
+            android:icon="@drawable/ic_mountains"
+            android:title="Montagna" />
+
+        <item
+            android:id="@+id/nav_menu_webcam"
+            android:icon="@drawable/ic_webcam"
+            android:title="Webcam" />
+    </group>
+        <group android:id="@+id/grp1" android:checkableBehavior="single" >
+
+            <item
+                android:id="@+id/nav_menu_impostaz"
+                android:icon="@drawable/ic_settings"
+                android:title="Impostazioni" />
+
+            <item
+                android:id="@+id/nav_menu_faq"
+                android:icon="@drawable/ic_help"
+                android:title="FAQ" />
+
+            <item
+                android:id="@+id/nav_menu_info"
+                android:icon="@drawable/ic_information"
+                android:title="Info utilizzo" />
+
+            <item
+                android:id="@+id/nav_menu_tag"
+                android:icon="@drawable/ic_tag"
+                android:title="V. 1.0.0" />
+
+
+        </group>
+</menu>

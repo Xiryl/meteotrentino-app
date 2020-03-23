@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="6dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_avalanche_grado_pericolo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_avalanche_tendenza"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_grado_pericolo" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_avalanche_txt_windometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_windometer"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/item_avalanche_txt_height"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_tendenza" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_avalanche_txt_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_mountains_height"
+            android:drawablePadding="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_txt_windometer"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_tendenza" />
+
+        <ImageView
+            android:id="@+id/item_avalanche_img_main"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_txt_height" />
+
+
+        <com.codesgood.views.JustifiedTextView
+            android:id="@+id/item_avalanche_txt_description_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_img_main" />
+
+
+        <com.codesgood.views.JustifiedTextView
+            android:id="@+id/item_avalanche_txt_description_subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_txt_description_title" />
+
+
+        <com.codesgood.views.JustifiedTextView
+            android:id="@+id/item_avalanche_txt_description_manto_nevoso_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/os_semibold"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_txt_description_situazione_tipo" />
+
+        <View
+            android:id="@+id/item_avalanche_color_bar"
+            android:layout_width="15dp"
+            android:layout_height="0dp"
+            android:background="#CEFA86"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_avalanche_txt_description_title2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Manto Nevoso"
+            android:layout_marginTop="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_txt_description_subtitle" />
+
+        <com.codesgood.views.JustifiedTextView
+            android:id="@+id/item_avalanche_txt_description_situazione_tipo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:drawablePadding="16dp"
+            android:drawableLeft="@drawable/ic_avalanche_snow"
+            android:layout_marginTop="6dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/item_avalanche_color_bar"
+            app:layout_constraintTop_toBottomOf="@+id/item_avalanche_txt_description_title2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

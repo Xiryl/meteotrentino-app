@@ -13,17 +13,10 @@ import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.MeteoTrentinoFor
 
 @Dao
 public interface ForecastDao {
-    /**
-     * Insert a new device
-     * @param nordicDevice device
-     */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(MeteoTrentinoForecast nordicDevice);
 
-    /**
-     * Return all devices as list
-     * @return
-     */
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(MeteoTrentinoForecast forecast);
+
     @Query("SELECT * FROM MeteoTrentinoForecast")
     Flowable<List<MeteoTrentinoForecast>> getAsList();
 
@@ -33,10 +26,6 @@ public interface ForecastDao {
     @Query("DELETE FROM MeteoTrentinoForecast")
     void clear();
 
-    /**
-     * Delete a list of devices
-     * @param nordicDevices
-     */
     @Delete
-    void delete(List<MeteoTrentinoForecast> nordicDevices);
+    void delete(List<MeteoTrentinoForecast> forecasts);
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingTop="54dp"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_allert_ic_date"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_poco_nuvoloso"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_allert_txt_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_regular"
+            android:text="MeteoTrentino"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/item_allert_ic_date"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_previsione"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_allert_txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/os_regular"
+            android:maxWidth="150dp"
+            android:text="www.chiarani.it"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@id/item_allert_ic_date"
+            app:layout_constraintTop_toBottomOf="@+id/item_allert_txt_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_allert_txt_date2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_regular"
+            android:maxWidth="150dp"
+            android:text="Versione: FREE"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_allert_ic_date" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

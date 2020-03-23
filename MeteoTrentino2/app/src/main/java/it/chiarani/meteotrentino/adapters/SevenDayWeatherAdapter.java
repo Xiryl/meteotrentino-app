@@ -3,7 +3,6 @@ package it.chiarani.meteotrentino.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,10 +41,10 @@ public class SevenDayWeatherAdapter extends RecyclerView.Adapter<SevenDayWeather
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtDay = itemView.findViewById(R.id.item_seven_day_weather_txt_day);
-            txtForecast = itemView.findViewById(R.id.item_seven_day_weather_txt_forecast);
+            txtForecast = itemView.findViewById(R.id.item_day_weather_txt_temperature);
             txtTemperatures = itemView.findViewById(R.id.item_seven_day_weather_txt_temperatures);
             txtDate = itemView.findViewById(R.id.item_seven_day_weather_txt_date);
-            icForecast = itemView.findViewById(R.id.item_seven_day_weather_ic_weather);
+            icForecast = itemView.findViewById(R.id.item_day_weather_ic_weather);
             itemView.setOnClickListener(this);
         }
 

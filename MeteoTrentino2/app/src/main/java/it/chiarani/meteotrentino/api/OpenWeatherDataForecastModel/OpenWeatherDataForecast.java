@@ -9,6 +9,10 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "OpenWeatherDataForecast")
 public class OpenWeatherDataForecast {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id_p_key;
+
     @SerializedName("coord")
     @Expose
     private OpenWeatherDataCoords coord;
@@ -39,7 +43,6 @@ public class OpenWeatherDataForecast {
     @SerializedName("timezone")
     @Expose
     private Integer timezone;
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -154,4 +157,11 @@ public class OpenWeatherDataForecast {
         this.cod = cod;
     }
 
+    public int getId_p_key() {
+        return id_p_key;
+    }
+
+    public void setId_p_key(int id_p_key) {
+        this.id_p_key = id_p_key;
+    }
 }

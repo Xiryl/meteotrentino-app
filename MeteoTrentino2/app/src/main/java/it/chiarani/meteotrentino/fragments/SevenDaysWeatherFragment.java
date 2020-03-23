@@ -65,7 +65,12 @@ public class SevenDaysWeatherFragment extends Fragment implements ItemClickListe
 
                     MeteoTrentinoForecast tmpMeteoTrentinoForecast = forecasts.get(forecasts.size() - 1);
                     mForecast = tmpMeteoTrentinoForecast;
-                    binding.fragmentSevenDaysWeatherTxtLocation.setText(tmpMeteoTrentinoForecast.getPrevisione().get(0).getLocalita());
+                    String localita = tmpMeteoTrentinoForecast.getPrevisione().get(0).getLocalita();
+                    if(localita.length() >= 16) {
+                        localita = localita.substring(0,15)+"..";
+                    }
+
+                    binding.fragmentSevenDaysWeatherTxtLocation.setText(localita);
                     binding.fragmentSevenDaysWeatherTxtForecast.setText(tmpMeteoTrentinoForecast.getPrevisione().get(0).getGiorni().get(0).getDescIcona());
                     binding.fragmentSevenDaysWeatherTxtDay.setText(DayConverter.ExtractDayFromDate(tmpMeteoTrentinoForecast.getPrevisione().get(0).getGiorni().get(0).getGiorno()));
 
@@ -104,7 +109,7 @@ public class SevenDaysWeatherFragment extends Fragment implements ItemClickListe
         bottomSheetDialogFragment.show(getActivity().getSupportFragmentManager(), "bottom_nav_sheet_dialog");
     }
 
-    public void popBackStack(FragmentManager manager){
+    private void popBackStack(FragmentManager manager){
         mDisposable.dispose();
         FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
         manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
