@@ -78,9 +78,6 @@ public class AvalancheFragment extends Fragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(model -> {
-                    setMainImage("https://avalanche.report/albina_files/"+todayDate+"/fd_albina_map.jpg", binding.fragmentAvalancheMainImg);
-
-
                     // set recyclerview
                     LinearLayoutManager linearLayoutManagerTags = new LinearLayoutManager(getActivity().getApplicationContext());
                     linearLayoutManagerTags.setOrientation(RecyclerView.VERTICAL);
@@ -95,19 +92,14 @@ public class AvalancheFragment extends Fragment {
                         startActivity(i);
                     });
 
-                    binding.fragmentAvalancheMainImg.setOnClickListener( v -> {
-                        if(zoomOut) {
-                            binding.fragmentAvalancheMainImg.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT));
-                            binding.fragmentAvalancheMainImg.setAdjustViewBounds(true);
-                            zoomOut =false;
-                        }else{
-                            binding.fragmentAvalancheMainImg.setLayoutParams(new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, ConstraintLayout.LayoutParams.MATCH_PARENT));
-                            binding.fragmentAvalancheMainImg.setScaleType(ImageView.ScaleType.FIT_XY);
-                            zoomOut = true;
-                        }
-                    });
                 }, throwable -> {
-                    // TODO: handle error
+                    if(throwable instanceof java.net.UnknownHostException) {
+                        binding.fragmentAvalancheAnimLoad.setAnimation(R.raw.anim_no_network);
+                        binding.fragmentAvalancheAnimLoad.playAnimation();
+                    } else {
+                        binding.fragmentAvalancheAnimLoad.setAnimation(R.raw.anim_err);
+                        binding.fragmentAvalancheAnimLoad.playAnimation();
+                    }
                 }));
 
         return view;

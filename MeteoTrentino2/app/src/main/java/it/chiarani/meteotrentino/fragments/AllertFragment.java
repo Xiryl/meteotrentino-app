@@ -112,7 +112,13 @@ public class AllertFragment extends Fragment implements ItemClickListener {
                     });
 
                 }, throwable -> {
-                    Toast.makeText(getActivity().getApplicationContext(), "Ooops", Toast.LENGTH_LONG).show();
+                    if(throwable instanceof java.net.UnknownHostException) {
+                        binding.fragmentAllertAnimLoad.setAnimation(R.raw.anim_no_network);
+                        binding.fragmentAllertAnimLoad.playAnimation();
+                    } else {
+                        binding.fragmentAllertAnimLoad.setAnimation(R.raw.anim_err);
+                        binding.fragmentAllertAnimLoad.playAnimation();
+                    }
                 }));
         return view;
     }

@@ -5,6 +5,7 @@ public class Config {
     public final static String OPENWEATHERDATA_BASE_ENDPOINT = "https://api.openweathermap.org/data/2.5/";
     public final static String PROTEZIONECIVILE_ALLERTE = "https://avvisi.protezionecivile.tn.it/";
     public final static String AVALANCHE_REPORT = "https://avalanche.report/albina_files/";
+    public final static String METEOTRENTINO_STATION_LIST = "http://dati.meteotrentino.it/service.asmx/";
     public final static String OPENWEATHERDATA_API_KEY = "e3ed2ef941a7db312f53eb848c35ee62";
     public static final String IMG_RADAR = "https://content.meteotrentino.it/dati-meteo/radar/home/lastRadar4mobile.aspx";
     public static final String IMG_INFR_EUROPE = "http://api.sat24.com/animated/ALPS/infraPolair/1/Central%20European%20Standard%20Time/493234";

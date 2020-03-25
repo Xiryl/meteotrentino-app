@@ -21,7 +21,7 @@
             android:id="@+id/nav_menu_neve"
             android:checked="false"
             android:icon="@drawable/ic_avalanche"
-            android:title="Neve e Valanghe" />
+            android:title="Valanghe" />
 
         <item
             android:id="@+id/nav_menu_dati_staz"
@@ -32,11 +32,6 @@
             android:id="@+id/nav_menu_dighe"
             android:icon="@drawable/ic_river"
             android:title="Dighe e Bacini" />
-
-        <item
-            android:id="@+id/nav_menu_montagna"
-            android:icon="@drawable/ic_mountains"
-            android:title="Montagna" />
 
         <item
             android:id="@+id/nav_menu_webcam"

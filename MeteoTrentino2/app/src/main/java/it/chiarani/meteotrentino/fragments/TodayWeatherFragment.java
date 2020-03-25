@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,21 +11,16 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.PopupMenu;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
-import org.jsoup.Jsoup;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,10 +67,10 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
     private SlotWeatherAdapter mAdapter;
     private Previsione mForecast;
     private OpenWeatherDataForecast mOpenForecast;
-    List<String> suggestions = Localities.getLocationAsList();
-    ArrayList<String> filteredSuggestions = new ArrayList<>(suggestions);
-    DrawerLayout dwLayout;
-    NavigationView navigationView;
+    private List<String> suggestions = Localities.getLocationAsList();
+    private ArrayList<String> filteredSuggestions = new ArrayList<>(suggestions);
+    private DrawerLayout dwLayout;
+    private NavigationView navigationView;
 
     public TodayWeatherFragment() {
     }
@@ -98,7 +92,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
 
         bindOpenWeatherData();
 
-        navigationView =  (NavigationView) getActivity().findViewById(R.id.navigation_view);
+        navigationView = getActivity().findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         bindSearchBar();
@@ -170,10 +164,12 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                     double temperature = Utils.getCelsiusFromFahrenheit(mOpenForecast.getMain().getTemp());
                     double windspeed = Utils.getKmhFromMs(mOpenForecast.getWind().getSpeed());
                     double humidity = mOpenForecast.getMain().getHumidity();
+                    double humidity = mOpenForecast.getMain().r();
 
                     binding.fragmentTodayWeatherTxtTemperature.setText(String.format("%.0f°", temperature));
                     binding.fragmentTodayWeatherTxtWindSpeed.setText(String.format("%.0f km/h", windspeed));
                     binding.fragmentTodayWeatherTxtHumidityPercentage.setText(String.format("%.0f%%", humidity));
+                    binding.fragmentTodayWeatherTxtRainPercentage.setText();
 
                     Date date = new Date((long)mOpenForecast.getSys().getSunrise()*1000);
                     Calendar calendar = Calendar.getInstance();
@@ -296,6 +292,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
             case R.id.nav_menu_allerte: FragmentLauncher.launch(new AllertFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_radar: FragmentLauncher.launch(new RadarFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_neve: FragmentLauncher.launch(new AvalancheFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_bollettino: FragmentLauncher.launch(new ProbabilisticFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
         }
         return false;
     }

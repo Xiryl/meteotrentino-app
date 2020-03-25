@@ -16,6 +16,7 @@ import it.chiarani.meteotrentino.AppExecutors;
 import it.chiarani.meteotrentino.MeteoTrentinoApp;
 import it.chiarani.meteotrentino.R;
 import it.chiarani.meteotrentino.api.MeteoTrentinoAPI;
+import it.chiarani.meteotrentino.api.MeteoTrentinoStationsAPI;
 import it.chiarani.meteotrentino.api.OpenWeatherDataAPI;
 import it.chiarani.meteotrentino.api.RetrofitAPI;
 import it.chiarani.meteotrentino.config.Config;
@@ -56,9 +57,7 @@ public class MainActivity extends BaseActivity {
         mAppExecutors = ((MeteoTrentinoApp)getApplication()).getRepository().getAppExecutors();
         mAppDatabase = ((MeteoTrentinoApp)getApplication()).getRepository().getDatabase();
 
-        accessLocation(isGPSGranted);
-
-        Consumer<Throwable> throwableConsumer = throwable -> Toast.makeText(this, "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
+       accessLocation(isGPSGranted);
     }
 
     @Override
@@ -101,8 +100,9 @@ public class MainActivity extends BaseActivity {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     accessLocation(true);
                 } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+                    binding.activityMainAnim.setAnimation(R.raw.anim_err);
+                    binding.activityMainAnim.playAnimation();
+                    binding.activityMainDescr.setText("Non riesco a collegarmi al GPS...");
                 }
             }
         }
@@ -124,8 +124,15 @@ public class MainActivity extends BaseActivity {
                                 this.finish();
                             });
                 }, throwable -> {
-                    // TODO: handle error
-                    int x = 1;
+                    if(throwable instanceof java.net.UnknownHostException) {
+                        binding.activityMainAnim.setAnimation(R.raw.anim_no_network);
+                        binding.activityMainAnim.playAnimation();
+                        binding.activityMainDescr.setText("Oops. Controlla la rete e riprova.");
+                    } else {
+                        binding.activityMainAnim.setAnimation(R.raw.anim_err);
+                        binding.activityMainAnim.playAnimation();
+                        binding.activityMainDescr.setText("Non riesco a collegarmi al server...");
+                    }
                 }));
     }
 
@@ -146,8 +153,15 @@ public class MainActivity extends BaseActivity {
                     String[] tmpLocation = {"TRENTO", "46.071322", "11.120295"};
                     retriveDataAndNext(tmpLocation, meteoTrentinoAPI, openWeatherDataAPI);
                 }, throwable -> {
-                    // TODO: handle error
-                    int x = 1;
+                    if(throwable instanceof java.net.UnknownHostException) {
+                        binding.activityMainAnim.setAnimation(R.raw.anim_no_network);
+                        binding.activityMainAnim.playAnimation();
+                        binding.activityMainDescr.setText("Oops. Controlla la rete e riprova.");
+                    } else {
+                        binding.activityMainAnim.setAnimation(R.raw.anim_err);
+                        binding.activityMainAnim.playAnimation();
+                        binding.activityMainDescr.setText("Non riesco a collegarmi al server...");
+                    }
                 }));
     }
 }

@@ -10,7 +10,7 @@
         tools:context=".views.MainActivity">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/fragment_allert_anim_load"
+            android:id="@+id/activity_main_anim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -23,13 +23,14 @@
             app:lottie_rawRes="@raw/anim_scan" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/activity_main_descr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Ottengo i dati ..."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_allert_anim_load" />
+            app:layout_constraintTop_toBottomOf="@+id/activity_main_anim" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

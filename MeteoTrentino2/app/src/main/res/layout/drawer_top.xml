@@ -8,6 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:paddingTop="54dp"
+        android:paddingBottom="32dp"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -48,20 +49,6 @@
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@id/item_allert_ic_date"
             app:layout_constraintTop_toBottomOf="@+id/item_allert_txt_name" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/item_allert_txt_date2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/os_regular"
-            android:maxWidth="150dp"
-            android:text="Versione: FREE"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/item_allert_ic_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
