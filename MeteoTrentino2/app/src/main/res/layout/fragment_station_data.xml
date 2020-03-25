@@ -55,7 +55,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_title" />
 
-
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/fragment_station_data_spinner"
             android:layout_width="wrap_content"
@@ -64,6 +63,103 @@
             android:layout_marginTop="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_sub" />
+
+        <RadioGroup
+            android:id="@+id/fragment_station_data_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_spinner">
+
+            <RadioButton
+                android:id="@+id/fragment_station_data_radio_temperatura"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Temperatura" />
+
+            <RadioButton
+                android:id="@+id/fragment_station_data_radio_pioggia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pioggia" />
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_station_data_last_temperature_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:drawableLeft="@drawable/ic_thermometer"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="20 °"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_station_data_last_rain_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_radio_group" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_station_data_last_rain_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:drawableLeft="@drawable/ic_drop"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/os_regular"
+            android:text="20 °"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_station_data_last_temperature_value"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_radio_group" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/fragment_station_data_anim_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_last_rain_value"
+            app:lottie_autoPlay="true"
+            android:visibility="gone"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/anim_err" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_station_data_rv"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_last_temperature_value" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/fragment_station_data_chart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="177dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_station_data_rv"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

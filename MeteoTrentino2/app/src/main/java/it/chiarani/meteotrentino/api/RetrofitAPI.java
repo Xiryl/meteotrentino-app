@@ -7,6 +7,7 @@ import it.chiarani.meteotrentino.api.AvalancheModel.AvalancheModel;
 import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
 import it.chiarani.meteotrentino.api.MeteoTrentinoProbabilisticModel.MeteoTrentinoProbabilisticModel;
 import it.chiarani.meteotrentino.api.MeteoTrentinoStationsModel.ArrayOfAnagrafica;
+import it.chiarani.meteotrentino.api.MeteoTrentinoStationsModel.DatiOggi;
 import it.chiarani.meteotrentino.api.OpenWeatherDataForecastModel.OpenWeatherDataForecast;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -23,8 +24,13 @@ public interface RetrofitAPI {
     @GET("previsioneOpenDataProbabilistico ")
     Observable<MeteoTrentinoProbabilisticModel> getMeteoTrentinoProbabilistic();
 
-    @GET("listaStazioni ")
+    @GET("listaStazioni")
     Observable<ArrayOfAnagrafica> getMeteoTrentinoStationList();
+
+    @GET("ultimiDatiStazione")
+    Observable<DatiOggi> getMeteoTrentinoStationData(
+            @Query("codice") String stationCode
+    );
 
     @GET("weather")
     Observable<OpenWeatherDataForecast> getOpenWeatherDataForecast(

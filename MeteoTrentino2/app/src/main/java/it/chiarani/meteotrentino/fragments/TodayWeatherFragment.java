@@ -164,12 +164,10 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                     double temperature = Utils.getCelsiusFromFahrenheit(mOpenForecast.getMain().getTemp());
                     double windspeed = Utils.getKmhFromMs(mOpenForecast.getWind().getSpeed());
                     double humidity = mOpenForecast.getMain().getHumidity();
-                    double humidity = mOpenForecast.getMain().r();
 
                     binding.fragmentTodayWeatherTxtTemperature.setText(String.format("%.0f°", temperature));
                     binding.fragmentTodayWeatherTxtWindSpeed.setText(String.format("%.0f km/h", windspeed));
                     binding.fragmentTodayWeatherTxtHumidityPercentage.setText(String.format("%.0f%%", humidity));
-                    binding.fragmentTodayWeatherTxtRainPercentage.setText();
 
                     Date date = new Date((long)mOpenForecast.getSys().getSunrise()*1000);
                     Calendar calendar = Calendar.getInstance();
@@ -293,6 +291,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
             case R.id.nav_menu_radar: FragmentLauncher.launch(new RadarFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_neve: FragmentLauncher.launch(new AvalancheFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_bollettino: FragmentLauncher.launch(new ProbabilisticFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_dati_staz: FragmentLauncher.launch(new StationDataFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
         }
         return false;
     }

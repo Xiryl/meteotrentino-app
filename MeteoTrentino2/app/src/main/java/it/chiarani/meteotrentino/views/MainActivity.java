@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity {
         mAppExecutors = ((MeteoTrentinoApp)getApplication()).getRepository().getAppExecutors();
         mAppDatabase = ((MeteoTrentinoApp)getApplication()).getRepository().getDatabase();
 
-       accessLocation(isGPSGranted);
+        accessLocation(isGPSGranted);
     }
 
     @Override
