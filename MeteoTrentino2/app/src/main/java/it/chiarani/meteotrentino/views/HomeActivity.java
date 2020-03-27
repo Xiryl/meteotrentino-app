@@ -1,11 +1,15 @@
 package it.chiarani.meteotrentino.views;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -38,23 +42,33 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        configureTabLayout();
+       /* if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            setTheme(R.style.AppThemeDark);
+            setWindowsColorsDark();
+        } else {
+            setTheme(R.style.AppTheme);
+        }
 
-        setWindowsColors();
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String currentTheme = sharedPref.getString("theme", "light");
+        if (currentTheme.equals("light")) {
+            setTheme(R.style.AppTheme);
+            setWindowsColorsLight();
+        } else {
+
+            setTheme(R.style.AppThemeDark);
+            setWindowsColorsDark();
+        }*/
+
+        configureTabLayout();
 
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
-
                             return;
                         }
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-
-                        Toast.makeText(HomeActivity.this, "Firebase Token:\n"+token, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -66,7 +80,7 @@ public class HomeActivity extends BaseActivity {
         transaction.commit();
     }
 
-    private void setWindowsColors() {
+    private void setWindowsColorsLight() {
         Window window = this.getWindow();
 
         // clear FLAG_TRANSLUCENT_STATUS flag:
@@ -76,11 +90,20 @@ public class HomeActivity extends BaseActivity {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorWhite));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.whiteGray));
     }
 
-    @Override
-    public void onBackPressed() {
-        // do nothing
+    private void setWindowsColorsDark() {
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
     }
+
 }

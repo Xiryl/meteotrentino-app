@@ -24,9 +24,7 @@ import it.chiarani.meteotrentino.views.HomeActivity;
 
 public class FirebasePushNotificationService extends FirebaseMessagingService {
     @Override public void onMessageReceived(RemoteMessage remoteMessage) {
-
-        setNotification(32);
-
+        // setNotification(32);
     }
 
     private void setNotification(long beaconsFoundSoFar) {

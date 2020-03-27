@@ -25,6 +25,7 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import it.chiarani.meteotrentino.MeteoTrentinoApp;
 import it.chiarani.meteotrentino.R;
 import it.chiarani.meteotrentino.adapters.AllertAdapter;
 import it.chiarani.meteotrentino.adapters.DaysAdapter;
@@ -37,8 +38,10 @@ import it.chiarani.meteotrentino.api.MeteoTrentinoProbabilisticModel.Giorni;
 import it.chiarani.meteotrentino.api.MeteoTrentinoProbabilisticModel.MeteoTrentinoProbabilisticModel;
 import it.chiarani.meteotrentino.api.ProtezioneCivileAPI;
 import it.chiarani.meteotrentino.api.RetrofitAPI;
+import it.chiarani.meteotrentino.config.Config;
 import it.chiarani.meteotrentino.databinding.FragmentAllertBinding;
 import it.chiarani.meteotrentino.databinding.FragmentProbabilisticBinding;
+import it.chiarani.meteotrentino.db.AppDatabase;
 import it.chiarani.meteotrentino.models.AllertItem;
 
 public class ProbabilisticFragment extends Fragment implements ItemClickListener {
@@ -50,6 +53,7 @@ public class ProbabilisticFragment extends Fragment implements ItemClickListener
     private ProbabilisticAdapter mAdapterProbabilistic;
     private ProbabilisticDescriptionAdapter mAdapterDesc;
     private DaysAdapter mAdapterDays;
+    private AppDatabase mAppDatabase;
 
     public ProbabilisticFragment() {
     }
@@ -66,8 +70,30 @@ public class ProbabilisticFragment extends Fragment implements ItemClickListener
         View view = binding.getRoot();
 
         RetrofitAPI meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
+        mAppDatabase = ((MeteoTrentinoApp)getActivity().getApplication()).getRepository().getDatabase();
 
         binding.fragmentProbabilisticBack.setOnClickListener( v->  popBackStack(getFragmentManager()));
+
+       // Uri.parse(URL_BOLLETTINO_PROBABILISTICO + entries.get(entries.size()-1).getIdPrevisione() + "&history=0"
+
+        mDisposable.add(mAppDatabase.forecastDao().getAsList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(model -> {
+                    binding.fragmentProbabilisticBtnDownload.setOnClickListener(v -> {
+                        String uri = String.format("%s%s&history=0",
+                                Config.PROB_DOWNLOAD_BULLETTIN,
+                                model.get(model.size() -1).getIdPrevisione());
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(uri));
+                        startActivity(i);
+                    });
+                }, throwable -> {
+                    String uri = "www.meteotrentino.it";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(uri));
+                    startActivity(i);
+                }));
 
         mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoProbabilistic()
                 .subscribeOn(Schedulers.io())
@@ -82,7 +108,6 @@ public class ProbabilisticFragment extends Fragment implements ItemClickListener
                     binding.fragmentProbabilisticAnimLoad.setVisibility(View.INVISIBLE);
                     binding.fragmentProbabilisticRv.setAdapter(mAdapterProbabilistic);
 
-
                     LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getActivity().getApplicationContext());
                     linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
                     binding.fragmentProbabilisticRvDescr.setLayoutManager(linearLayoutManager);
@@ -94,7 +119,6 @@ public class ProbabilisticFragment extends Fragment implements ItemClickListener
                     binding.fragmentProbabilisticRvDays.setLayoutManager(linearLayoutManagerDays);
                     mAdapterDays = new DaysAdapter(model.getGiorni(), this::onItemClick);
                     binding.fragmentProbabilisticRvDays.setAdapter(mAdapterDays);
-
                 }, throwable -> {
                     if(throwable instanceof java.net.UnknownHostException) {
                         binding.fragmentProbabilisticAnimLoad.setAnimation(R.raw.anim_no_network);

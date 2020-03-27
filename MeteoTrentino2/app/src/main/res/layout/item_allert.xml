@@ -38,7 +38,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/os_semibold"
             android:text="Messaggio Messaggio Messaggio Messaggio Messaggio"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/item_allert_ic_link"
             app:layout_constraintHorizontal_bias="0.0"

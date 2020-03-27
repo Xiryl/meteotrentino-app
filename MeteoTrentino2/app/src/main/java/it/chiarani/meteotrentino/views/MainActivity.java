@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,7 +51,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setWindowsColorsLight();
         boolean isGPSGranted = GPSUtils.checkGPSPermissions(this);
 
         meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
@@ -164,4 +167,20 @@ public class MainActivity extends BaseActivity {
                     }
                 }));
     }
+
+    private void setWindowsColorsLight() {
+        Window window = this.getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the color
+        window.setStatusBarColor(ContextCompat.getColor(this,R.color.colorWhite));
+    }
+
 }
+
+

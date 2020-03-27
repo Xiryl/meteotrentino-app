@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data></data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/bgColor"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fragment_faq_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_back"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/os_bold"
+            android:text="Torna alla home"
+            android:textColor="?attr/textColor"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="F.A.Q."
+            android:textColor="?attr/textColor"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="No, sono uno sviluppatore che ha creato questa applicazione per pura passione. Seppur l'applicazione non è ufficiale, i dati visualizzati all'interno di questa applicazione lo sono."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub_t" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Questa applicazione si occupa solo di essere da intermediaria tra i dati forniti dalla PAT e/o i sensori letti dalle stazioni metereologiche. L'applicazione non crea tali dati!"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub_t2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Questa applicazione supporta solo le località a cui la PAT offre i relativi dati metereologici."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub_t3" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Può capitare che le immagini radar o satellitari siano in manutenzione."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub_t4" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:layout_marginTop="16dp"
+            android:text="I dati sono ricavati dagli opendata (dati.trentino.it), da openweathermap.org e da protezionecivile.tn.it"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub_t5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:layout_marginTop="16dp"
+            android:text="In caso di allerte emanate, o grosse esigenze, l'applicaizone permette di ricevere delle notifiche push, in modo da permettere a chi la uso di rimanere sempre aggiornato!"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub_t6" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub_t"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="L'applicazione è ufficiale della Provincia Autonoma di Trento?"
+            android:textColor="?attr/textColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub_t2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="La temperatura riportata è sbagliata rispetto al mio termometro di casa."
+            android:textColor="?attr/textColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub_t3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="La mia località non è presente"
+            android:textColor="?attr/textColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub_t4"
+            android:layout_width="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Il radar e/o le immagini satellitari non funzionano"
+            android:textColor="?attr/textColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub3" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub_t5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Da dove vengono presi i dati?"
+            android:textColor="?attr/textColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub4" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_faq_sub_t6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Perchè mi arrivano delle le notifiche?"
+            android:textColor="?attr/textColor"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_faq_sub5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

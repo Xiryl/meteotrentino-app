@@ -7,6 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="?attr/bgColor"
         android:layout_height="match_parent">
 
         <TextView
@@ -19,7 +20,7 @@
             android:drawablePadding="12dp"
             android:fontFamily="@font/os_bold"
             android:text="Torna alla home"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="22sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,11 +33,26 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/os_semibold"
             android:text="Bollettino Probabilistico"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_probabilistic_back" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fragment_probabilistic_btn_download"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/map_marker_dimen"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="16dp"
+            android:drawableLeft="@drawable/ic_information"
+            android:drawablePadding="4dp"
+            android:text="Scarica PDF"
+            app:cornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_probabilistic_title"
             app:layout_constraintTop_toBottomOf="@+id/fragment_probabilistic_back" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -46,7 +62,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="38dp"
             android:fontFamily="@font/os_semibold"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"

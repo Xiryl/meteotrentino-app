@@ -1,23 +1,30 @@
 package it.chiarani.meteotrentino.fragments;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,9 +41,11 @@ import it.chiarani.meteotrentino.adapters.StationDataTemperatureAdapter;
 import it.chiarani.meteotrentino.api.MeteoTrentinoStationsAPI;
 import it.chiarani.meteotrentino.api.MeteoTrentinoStationsModel.Anagrafica;
 import it.chiarani.meteotrentino.api.MeteoTrentinoStationsModel.DatiOggi;
+import it.chiarani.meteotrentino.api.MeteoTrentinoStationsModel.Precipitazione;
 import it.chiarani.meteotrentino.api.MeteoTrentinoStationsModel.TemperaturaAria;
 import it.chiarani.meteotrentino.api.RetrofitAPI;
 import it.chiarani.meteotrentino.databinding.FragmentStationDataBinding;
+import it.chiarani.meteotrentino.utils.CustomDateFormatter;
 
 public class StationDataFragment extends Fragment {
 
@@ -83,6 +92,7 @@ public class StationDataFragment extends Fragment {
                         @Override
                         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                             retriveStationData(model.getAnagrafica().get(position).getCodice());
+                            ((TextView) parentView.getChildAt(0)).setTextColor(Color.parseColor("#A4A4A4"));
                         }
 
                         @Override
@@ -103,15 +113,15 @@ public class StationDataFragment extends Fragment {
                 StationDataTemperatureAdapter mAdapter = new StationDataTemperatureAdapter(mDatiOggi.getTemperature().temperaturaAria());
                 binding.fragmentStationDataRv.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+                // setTemperatureGraph(mDatiOggi);
             } else {
                 Collections.reverse(mDatiOggi.getTemperature().temperaturaAria());
                 StationDataRainAdapter mAdapter = new StationDataRainAdapter(mDatiOggi.getPrecipitazioni().getPrecipitazione());
                 binding.fragmentStationDataRv.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+               // setRainGraph(mDatiOggi);
             }
         });
-
-
 
         return view;
     }
@@ -126,26 +136,18 @@ public class StationDataFragment extends Fragment {
                     binding.fragmentStationDataRadioTemperatura.setEnabled(true);
                     binding.fragmentStationDataRadioPioggia.setEnabled(true);
                     binding.fragmentStationDataAnimLoad.setVisibility(View.GONE);
+                    binding.fragmentStationDataTitleAndamentoPioggia.setVisibility(View.VISIBLE);
+                    binding.fragmentStationDataTitleAndamentoTemperatura.setVisibility(View.VISIBLE);
                     binding.fragmentStationDataRv.setVisibility(View.VISIBLE);
+                    binding.fragmentStationDataChart.setVisibility(View.VISIBLE);
+                    binding.fragmentStationDataChartRain.setVisibility(View.VISIBLE);
 
                     LinearLayoutManager linearLayoutManagerTags = new LinearLayoutManager(getActivity().getApplicationContext());
                     linearLayoutManagerTags.setOrientation(RecyclerView.VERTICAL);
                     binding.fragmentStationDataRv.setLayoutManager(linearLayoutManagerTags);
 
-                    long x = 0;
-                    List<Entry> entries = new ArrayList<Entry>();
-                    for (TemperaturaAria data : model.getTemperature().temperaturaAria()) {
-                        // turn your data into Entry objects
-                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                        Date date = (Date)formatter.parse(data.getData());
-                        entries.add(new Entry(x++, Float.parseFloat(data.getTemperatura())));
-                    }
-
-                    LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
-                    LineData lineData = new LineData(dataSet);
-                    binding.fragmentStationDataChart.setData(lineData);
-                    binding.fragmentStationDataChart.invalidate(); // refresh
-
+                    setTemperatureGraph(model);
+                    setRainGraph(model);
 
                     Collections.reverse(model.getTemperature().temperaturaAria());
                     Collections.reverse(model.getPrecipitazioni().getPrecipitazione());
@@ -156,12 +158,12 @@ public class StationDataFragment extends Fragment {
                     StationDataTemperatureAdapter mAdapter = new StationDataTemperatureAdapter(model.getTemperature().temperaturaAria());
                     binding.fragmentStationDataRv.setAdapter(mAdapter);
 
-
-
-
-
                 }, throwable ->
                 {
+                    binding.fragmentStationDataChartRain.setVisibility(View.GONE);
+                    binding.fragmentStationDataTitleAndamentoPioggia.setVisibility(View.GONE);
+                    binding.fragmentStationDataTitleAndamentoTemperatura.setVisibility(View.GONE);
+                    binding.fragmentStationDataChart.setVisibility(View.GONE);
                     binding.fragmentStationDataLastRainValue.setText("--");
                     binding.fragmentStationDataLastTemperatureValue.setText("--");
                     binding.fragmentStationDataRadioTemperatura.setEnabled(false);
@@ -170,6 +172,84 @@ public class StationDataFragment extends Fragment {
                     Toast.makeText(getActivity().getApplicationContext(), "Stazione non attiva", Toast.LENGTH_LONG).show();
                     binding.fragmentStationDataAnimLoad.setVisibility(View.VISIBLE);
                 }));
+    }
+
+    private void setTemperatureGraph(DatiOggi model) {
+        List<Entry> entries = new ArrayList<>();
+        for (TemperaturaAria data : model.getTemperature().temperaturaAria()) {
+            // turn your data into Entry objects
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            try {
+                Date date = (Date)inputFormat.parse(data.getData());
+                long time = date.getTime();
+
+                entries.add(new Entry(time, Float.parseFloat(data.getTemperatura())));
+            }catch (Exception ex) {
+
+            }
+        }
+
+        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
+        LineData lineData = new LineData(dataSet);
+
+        dataSet.setDrawFilled(true);
+        Drawable drawable = ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.bg_fade_blue);
+        dataSet.setFillDrawable(drawable);
+
+        if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
+            binding.fragmentStationDataChart.getAxisLeft().setTextColor(Color.WHITE);
+            binding.fragmentStationDataChart.getAxisRight().setTextColor(Color.WHITE);
+            binding.fragmentStationDataChart.getXAxis().setTextColor(Color.WHITE);
+            binding.fragmentStationDataChart.getLegend().setTextColor(Color.WHITE);
+        } else {
+            binding.fragmentStationDataChart.getAxisLeft().setTextColor(Color.BLACK);
+            binding.fragmentStationDataChart.getAxisRight().setTextColor(Color.BLACK);
+            binding.fragmentStationDataChart.getXAxis().setTextColor(Color.BLACK);
+            binding.fragmentStationDataChart.getLegend().setTextColor(Color.BLACK);
+        }
+
+        binding.fragmentStationDataChart.getDescription().setText("Temperature");
+        binding.fragmentStationDataChart.getAxisLeft().setDrawGridLines(false);
+        binding.fragmentStationDataChart.getXAxis().setDrawGridLines(false);
+        binding.fragmentStationDataChart.getLegend().setEnabled(false);
+        binding.fragmentStationDataChart.getXAxis().setValueFormatter(new CustomDateFormatter());
+        binding.fragmentStationDataChart.getXAxis().setGranularity(2000f);
+        binding.fragmentStationDataChart.getXAxis().setLabelRotationAngle(-45);
+        binding.fragmentStationDataChart.setData(lineData);
+        binding.fragmentStationDataChart.invalidate(); // refresh
+    }
+
+    private void setRainGraph(DatiOggi model) {
+        List<Entry> entries = new ArrayList<>();
+        for (Precipitazione data : model.getPrecipitazioni().getPrecipitazione()) {
+            // turn your data into Entry objects
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            try {
+                Date date = (Date)inputFormat.parse(data.getData());
+                long time = date.getTime();
+
+                entries.add(new Entry(time, Float.parseFloat(data.getPioggia())));
+            }catch (Exception ex) {
+
+            }
+        }
+
+        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
+        LineData lineData = new LineData(dataSet);
+
+        dataSet.setDrawFilled(true);
+        Drawable drawable = ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.bg_fade_blue);
+        dataSet.setFillDrawable(drawable);
+
+        binding.fragmentStationDataChartRain.getDescription().setText("Pioggie");
+        binding.fragmentStationDataChartRain.getAxisLeft().setDrawGridLines(false);
+        binding.fragmentStationDataChartRain.getXAxis().setDrawGridLines(false);
+        binding.fragmentStationDataChartRain.getLegend().setEnabled(false);
+        binding.fragmentStationDataChartRain.getXAxis().setValueFormatter(new CustomDateFormatter());
+        binding.fragmentStationDataChartRain.getXAxis().setGranularity(2000f);
+        binding.fragmentStationDataChartRain.getXAxis().setLabelRotationAngle(-45);
+        binding.fragmentStationDataChartRain.setData(lineData);
+        binding.fragmentStationDataChartRain.invalidate(); // refresh
     }
 
     private void popBackStack(FragmentManager manager){

@@ -59,6 +59,12 @@ public class AllertFragment extends Fragment implements ItemClickListener {
 
         binding.fragmentAllertBack.setOnClickListener( v->  popBackStack(getFragmentManager()));
 
+        binding.fragmentAllertEmergencyButton.setOnClickListener( v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:112"));
+            startActivity(intent);
+        });
+
         mDisposable.add(protezioneCivileAPI.getAllert()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

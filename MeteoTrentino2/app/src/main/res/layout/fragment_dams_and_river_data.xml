@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data></data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/bgColor"
+        android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/fragment_dams_and_river_data_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:drawableLeft="@drawable/ic_back"
+            android:drawablePadding="12dp"
+            android:fontFamily="@font/os_bold"
+            android:text="Torna alla home"
+            android:textColor="?attr/textColor"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_dams_and_river_data_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Dati Dighe e Bacini"
+            android:textColor="?attr/textColor"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_dams_and_river_data_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Seleziona un Bacino"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_title" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_dams_and_river_data_sub2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:text="Seleziona una Stazione"
+            android:layout_marginTop="32dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_spinner_bacini_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/fragment_dams_and_river_data_sub3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/os_semibold"
+            android:layout_marginTop="32dp"
+            android:text="Seleziona un Sensore"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_spinner_bacini_station" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/fragment_dams_and_river_data_spinner_bacini_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="?attr/textColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_sub" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:layout_marginTop="16dp"
+            android:id="@+id/fragment_dams_and_river_data_spinner_bacini_station"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="?attr/textColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_sub2" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/fragment_dams_and_river_data_spinner_bacini_sensors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+
+            android:backgroundTint="?attr/textColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_sub3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_dams_and_river_data_rv"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_spinner_bacini_sensors" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/fragment_dams_and_river_data_chart"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_rv"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/fragment_dams_and_river_anim_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_dams_and_river_data_sub3"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/anim_scan" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

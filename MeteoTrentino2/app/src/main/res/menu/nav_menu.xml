@@ -51,9 +51,9 @@
                 android:title="FAQ" />
 
             <item
-                android:id="@+id/nav_menu_info"
-                android:icon="@drawable/ic_information"
-                android:title="Info utilizzo" />
+                android:id="@+id/nav_menu_supporto"
+                android:icon="@drawable/ic_paypal"
+                android:title="Supporto e Donazioni" />
 
             <item
                 android:id="@+id/nav_menu_tag"

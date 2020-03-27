@@ -104,6 +104,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
         return view;
     }
 
+
     private void getExecutors() {
         mAppDatabase = ((MeteoTrentinoApp)getActivity().getApplication()).getRepository().getDatabase();
         mAppExecutors = ((MeteoTrentinoApp)getActivity().getApplication()).getRepository().getAppExecutors();
@@ -112,6 +113,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
     private void bindMeteoTrentinoData() {
         mDisposable.add(mAppDatabase.forecastDao().getAsList()
                 .subscribeOn(Schedulers.io())
+                .take(1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(forecasts -> {
 
@@ -131,6 +133,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                     binding.fragmentTodayWeatherTxtForecast.setText(mForecast.getGiorni().get(0).getDescIcona());
                     binding.fragmentTodayWeatherTxtDay.setText(DayConverter.ExtractDayFromDate(mForecast.getGiorni().get(0).getGiorno()));
                     binding.fragmentTodayImgWeather.setBackgroundResource(IconConverter.getIconFromId(mForecast.getGiorni().get(0).getIdIcona()));
+                    binding.fragmentTodayWeatherTxtRainPercentage.setText(String.format("%s %%", descConverter(mForecast.getGiorni().get(0).getFasce().get(0).getDescPrecProb())));
 
                     // set recyclerview
                     LinearLayoutManager linearLayoutManagerTags = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -156,6 +159,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
     private void bindOpenWeatherData() {
         mDisposable.add(mAppDatabase.openWeatherDataForecastDao().getAsList()
                 .subscribeOn(Schedulers.io())
+                .take(1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(forecasts -> {
 
@@ -258,7 +262,6 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
         String lng = filteredSuggestions.get(position).split(";")[4];
         Toast.makeText(getActivity().getApplicationContext(), "Location:" + location, Toast.LENGTH_LONG).show();
 
-
         RetrofitAPI meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
         RetrofitAPI openWeatherDataAPI = OpenWeatherDataAPI.getInstance();
 
@@ -284,6 +287,16 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
         bottomSheetDialogFragment.show(getActivity().getSupportFragmentManager(), "bottom_nav_sheet_dialog");
     }
 
+    private String descConverter(String desc) {
+        switch (desc.toLowerCase()) {
+            case "molto bassa": return "0-25";
+            case "bassa": return "25-50";
+            case "media": return "50-75";
+            case "alta": return "75-100";
+            default: return "--";
+        }
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -292,7 +305,18 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
             case R.id.nav_menu_neve: FragmentLauncher.launch(new AvalancheFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_bollettino: FragmentLauncher.launch(new ProbabilisticFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_dati_staz: FragmentLauncher.launch(new StationDataFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_dighe: FragmentLauncher.launch(new DamsAndRiverFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_webcam: FragmentLauncher.launch(new WebcamFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_impostaz: FragmentLauncher.launch(new SettingsFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_faq: FragmentLauncher.launch(new FaqFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_supporto: FragmentLauncher.launch(new DonationFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
         }
         return false;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mDisposable.dispose();
     }
 }

@@ -78,6 +78,10 @@ public class GPSUtils {
         }
 
         Location location = getLastKnownLocation(lm, context);
+        if(location == null) {
+            return new String[]{"", "", ""};
+        }
+
         double lng = location.getLongitude();
         double lat = location.getLatitude();
         Geocoder gcd = new Geocoder(context, Locale.getDefault());
@@ -98,9 +102,11 @@ public class GPSUtils {
         List<String> providers = lm.getProviders(true);
         Location bestLocation = null;
         for (String provider : providers) {
-            if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
+            if (context.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                int x = 1;
             }
+
             Location l = lm.getLastKnownLocation(provider);
             if (l == null) {
                 continue;

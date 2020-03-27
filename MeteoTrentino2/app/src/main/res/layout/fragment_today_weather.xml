@@ -7,18 +7,26 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="?attr/bgColor"
         android:layout_height="match_parent">
 
         <com.mancj.materialsearchbar.MaterialSearchBar
             style="@style/MaterialSearchBarLight"
             app:mt_navIconEnabled="true"
             app:mt_hint="Scrivi per filtrare"
+            app:mt_searchBarColor="?attr/bgSearchbarColor"
+            app:mt_hintColor="?attr/textColorSearchBar"
+            app:mt_textColor="?attr/textColorSearchBar"
+            app:mt_placeholderColor="?attr/textColorSearchBar"
+            app:mt_navIconTint="?attr/textColorSearchBar"
+            app:mt_searchIconTint="?attr/textColorSearchBar"
             app:mt_placeholder="Cambia località"
             app:mt_maxSuggestionsCount="10"
             app:mt_menuIconDrawable="@drawable/ic_menu"
             app:mt_speechMode="false"
             android:layout_marginTop="16dp"
             android:layout_marginStart="32dp"
+            app:mt_roundedSearchBarEnabled="true"
             android:layout_marginEnd="32dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -147,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/os_bold"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="@dimen/fragment_seven_days_txt_size_location"
             app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
             app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
@@ -178,6 +186,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_today_weather_txt_forecast" />
 
+        <TextView
+            android:id="@+id/fragment_today_weather_txt_day2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/os_light"
+            android:text="Prossime fasce orarie"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/fragment_seven_days_txt_size_description"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_today_weather_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/fragment_today_img_weather"
             android:layout_width="170dp"
@@ -196,7 +217,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/os_regular"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="65sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -208,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/os_semibold"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/fragment_today_weather_txt_humidity_percentage"
             app:layout_constraintStart_toStartOf="parent"
@@ -220,7 +241,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/os_semibold"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="15sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline4"
             app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -232,7 +253,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/os_bold"
-            android:textColor="@android:color/black"
+            android:textColor="?attr/textColor"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fragment_today_weather_txt_humidity_percentage"

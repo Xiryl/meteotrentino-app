@@ -109,11 +109,13 @@ public class AvalancheAdapter extends RecyclerView.Adapter<AvalancheAdapter.View
 
         List<String> aspects = model.getForenoon().getAvalancheSituation1().getAspects();
         String tmpAspects = "";
-        for(String direction : aspects) {
-            tmpAspects += direction + ", ";
+        if(aspects != null) {
+            for(String direction : aspects) {
+                tmpAspects += direction + ", ";
+            }
+            tmpAspects.substring(0, tmpAspects.length()-2);
         }
 
-        tmpAspects.substring(0, tmpAspects.length()-2);
 
         holder.txtWindometer.setText(tmpAspects);
 
@@ -129,17 +131,23 @@ public class AvalancheAdapter extends RecyclerView.Adapter<AvalancheAdapter.View
             holder.txtHeight.setText(String.format("1: %smt, 2: %smt", elevationAbove, elevationLow));
         }
 
-        for(AvActivityHighlight highlight : model.getAvActivityHighlights()) {
-            if(highlight.getLanguageCode().equals("it")) {
-                holder.txtDescriptionTitle.setText(highlight.getText());
+        if( model.getAvActivityHighlights() != null) {
+            for(AvActivityHighlight highlight : model.getAvActivityHighlights()) {
+                if(highlight.getLanguageCode().equals("it")) {
+                    holder.txtDescriptionTitle.setText(highlight.getText());
+                }
+            }
+
+        }
+
+        if(model.getAvActivityComment() != null) {
+            for(AvActivityComment comment : model.getAvActivityComment()) {
+                if(comment.getLanguageCode().equals("it")) {
+                    holder.txtDescriptionSubtitle.setText(comment.getText());
+                }
             }
         }
 
-        for(AvActivityComment comment : model.getAvActivityComment()) {
-            if(comment.getLanguageCode().equals("it")) {
-                holder.txtDescriptionSubtitle.setText(comment.getText());
-            }
-        }
 
 
         String sts = "";
@@ -157,15 +165,15 @@ public class AvalancheAdapter extends RecyclerView.Adapter<AvalancheAdapter.View
             }
         }
 
-        holder.txtMantoNevoso.setText("Situazione Tipo"+sts);
+        holder.txtMantoNevoso.setText("Situazione Tipo:"+sts);
 
-        for(SnowpackStructureComment comment : model.getSnowpackStructureComment()) {
-            if(comment.getLanguageCode().equals("it")) {
-                holder.txtMantoNevosoDesc.setText(comment.getText());
+        if(model.getSnowpackStructureComment() != null) {
+            for (SnowpackStructureComment comment : model.getSnowpackStructureComment()) {
+                if (comment.getLanguageCode().equals("it")) {
+                    holder.txtMantoNevosoDesc.setText(comment.getText());
+                }
             }
         }
-
-
     }
 
     @Override

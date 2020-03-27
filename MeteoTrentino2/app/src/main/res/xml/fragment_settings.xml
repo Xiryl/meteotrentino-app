@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Generali">
+
+        <Preference
+            android:key="pref_key_clear_storage"
+            android:title="Rimuovi tutti i dati"
+            android:summary="Questa operazione rimuove tutti i dati salvati in locale (previsioni, dati stazioni, etc.)" />
+
+
+        <SwitchPreference
+            android:key="pref_key_darkmode"
+            android:title="Tema"
+            android:summary="Imposta il tema scuro" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Contatti">
+
+        <Preference
+            android:key="pref_key_contact_telegram"
+            android:summary="Riceverai una risposta rapida (t.me/Xiryl)"
+            android:title="Contattami da Telegram" />
+
+        <Preference
+            android:key="pref_key_contact_email"
+            android:summary="fabio@chiarani.it"
+            android:title="Contattami vai Mail" />
+
+        <Preference
+            android:key="pref_key_contact_website"
+            android:summary="www.chiarani.it"
+            android:title="Sito web sviluppatore" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Privacy">
+
+        <Preference
+            android:key="pref_key_privacy"
+            android:summary="Vai alla risorsa"
+            android:title="Privacy Policy" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

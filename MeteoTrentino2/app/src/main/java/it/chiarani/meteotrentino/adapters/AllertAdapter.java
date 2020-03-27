@@ -64,14 +64,13 @@ public class AllertAdapter extends RecyclerView.Adapter<AllertAdapter.ViewHolder
         TextDrawable dateDrawable = TextDrawable
                 .builder()
                 .beginConfig()
-                .fontSize(35)
+                .fontSize(28)
                 .endConfig()
-                .buildRoundRect(mItems.get(position).getMonth().substring(0,3).toUpperCase(), Color.GRAY, 100);
+                .buildRoundRect(mItems.get(position).getMonth().toUpperCase(), Color.parseColor("#350F4E"), 100);
 
         dateDrawable.setPadding(2,2,2,2);
 
         holder.icDate.setImageDrawable(dateDrawable);
-
     }
 
     @Override

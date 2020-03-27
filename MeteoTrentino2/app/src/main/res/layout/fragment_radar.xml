@@ -11,6 +11,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:background="?attr/bgColor"
             android:layout_width="match_parent"
             android:paddingBottom="32dp"
             android:orientation="vertical"
@@ -27,7 +28,7 @@
                 android:drawablePadding="12dp"
                 android:fontFamily="@font/os_bold"
                 android:text="Torna alla home"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/textColor"
                 android:textSize="22sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -38,7 +39,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/os_semibold"
                 android:text="Immagini Radar e Satellitari"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/textColor"
                 android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -49,9 +50,9 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/os_semibold"
-                android:text="La velocità di caricamento può dipendere dalla tua connessione."
+                android:text="La velocità di caricamento può dipendere dalla tua connessione e/o dalla disponibilità del servizio."
                 android:textColor="@android:color/darker_gray"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/fragment_radar_title_radar"
@@ -61,7 +62,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/os_regular"
                 android:text="Radar e Precipitazioni"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/textColor"
                 android:textSize="18sp"/>
 
 
@@ -90,7 +91,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/os_regular"
                 android:text="Infrarosso Europa"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/textColor"
                 android:textSize="18sp" />
 
 
@@ -119,7 +120,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/os_regular"
                 android:text="Zona Alpina"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/textColor"
                 android:textSize="18sp"/>
 
             <com.airbnb.lottie.LottieAnimationView
@@ -147,7 +148,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/os_regular"
                 android:text="Nevicate"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/textColor"
                 android:textSize="18sp" />
 
             <com.airbnb.lottie.LottieAnimationView
@@ -175,7 +176,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/os_regular"
                 android:text="Europa"
-                android:textColor="@android:color/black"
+                android:textColor="?attr/textColor"
                 android:textSize="18sp"/>
 
             <com.airbnb.lottie.LottieAnimationView

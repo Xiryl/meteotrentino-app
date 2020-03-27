@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import it.chiarani.meteotrentino.api.AvalancheModel.AvalancheModel;
+import it.chiarani.meteotrentino.api.BaciniModel.ListaBacini;
 import it.chiarani.meteotrentino.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
 import it.chiarani.meteotrentino.api.MeteoTrentinoProbabilisticModel.MeteoTrentinoProbabilisticModel;
 import it.chiarani.meteotrentino.api.MeteoTrentinoStationsModel.ArrayOfAnagrafica;
@@ -26,6 +27,15 @@ public interface RetrofitAPI {
 
     @GET("listaStazioni")
     Observable<ArrayOfAnagrafica> getMeteoTrentinoStationList();
+
+    @GET("bacini_nuovo.json")
+    Observable<ListaBacini> getDamsAndRiverJson();
+
+    @GET("download.php")
+    Observable<ResponseBody> getRiverSensorData(
+            @Query("Sensore") String sensor,
+            @Query("Argomento") String argument
+    );
 
     @GET("ultimiDatiStazione")
     Observable<DatiOggi> getMeteoTrentinoStationData(
