@@ -29,7 +29,7 @@
         <Preference
             android:key="pref_key_contact_email"
             android:summary="fabio@chiarani.it"
-            android:title="Contattami vai Mail" />
+            android:title="Contattami via Mail" />
 
         <Preference
             android:key="pref_key_contact_website"

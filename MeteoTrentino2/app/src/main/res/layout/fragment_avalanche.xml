@@ -35,7 +35,6 @@
             android:text="Report Valanghe"
             android:textColor="?attr/textColor"
             android:textSize="20sp"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_today_img_7days"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_back" />
@@ -48,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/os_semibold"
             android:layout_marginEnd="16dp"
-            android:text="ATTENZIONE: per un report completo scarica il pdf ufficiale, altrimenti visita il sito webavalanche.report"
+            android:text="ATTENZIONE: per un report completo scarica il pdf ufficiale, altrimenti visita il sito web avalanche.report"
             android:textColor="#F85E5E"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -77,10 +76,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_avalanche_descr"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/anim_scan"
-            tools:layout_editor_absoluteY="339dp" />
+            app:lottie_rawRes="@raw/anim_scan" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_avalanche_rv"

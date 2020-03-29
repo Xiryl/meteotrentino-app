@@ -3,6 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
         <item name="bgColor">#FAFAFA</item>
         <item name="textColor">#000000</item>
         <item name="bgSearchbarColor">#FFFFFF</item>
@@ -24,6 +28,10 @@
 
     <style name="AppThemeDark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
         <item name="bgColor">#121212</item>
         <item name="textColor">#FAFAFA</item>
         <item name="bgSearchbarColor">#424242</item>
@@ -34,14 +42,6 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
         <item name="android:spinnerDropDownItemStyle">@style/mySpinnerItemStyleDArk</item>
 
-    </style>
-
-    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
-    </style>
-
-    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="textAllCaps">false</item>
     </style>
 
     <style name="AppBottomSheetDialogTheme"

@@ -34,7 +34,6 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/item_allert_ic_date"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_txt_title_previsione"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView

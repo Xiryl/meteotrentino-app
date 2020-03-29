@@ -5,6 +5,10 @@
     >
     <data></data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:background="?attr/bgColor"
@@ -190,25 +194,25 @@
             android:id="@+id/fragment_today_weather_txt_day2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/os_light"
             android:text="Prossime fasce orarie"
             android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/fragment_seven_days_txt_size_description"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_today_weather_rv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_weather_detail_ic_sunrise" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/fragment_today_img_weather"
             android:layout_width="170dp"
             android:layout_height="170dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_today_weather_txt_day" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_today_weather_txt_day"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            tools:layout_editor_absoluteY="339dp" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -263,16 +267,20 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_today_weather_rv"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:orientation="horizontal"
             android:scrollbars="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_today_weather_txt_day2">
 
         </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>
