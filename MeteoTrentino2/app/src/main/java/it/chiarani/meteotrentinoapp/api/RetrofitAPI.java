@@ -11,7 +11,6 @@ import it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel.ArrayOfAnagra
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel.DatiOggi;
 import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataForecast;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

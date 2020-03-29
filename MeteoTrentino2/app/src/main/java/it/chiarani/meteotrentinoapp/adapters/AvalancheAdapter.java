@@ -9,18 +9,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.Request;
-import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.Target;
 
 import java.util.List;
 
@@ -29,7 +22,6 @@ import it.chiarani.meteotrentinoapp.api.AvalancheModel.AvActivityComment;
 import it.chiarani.meteotrentinoapp.api.AvalancheModel.AvActivityHighlight;
 import it.chiarani.meteotrentinoapp.api.AvalancheModel.AvalancheModel;
 import it.chiarani.meteotrentinoapp.api.AvalancheModel.SnowpackStructureComment;
-import it.chiarani.meteotrentinoapp.models.AllertItem;
 
 public class AvalancheAdapter extends RecyclerView.Adapter<AvalancheAdapter.ViewHolder> {
     private List<AvalancheModel> mItems;

@@ -8,11 +8,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.security.spec.ECField;
 import java.util.List;
 
 import it.chiarani.meteotrentinoapp.R;
-import it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel.TemperaturaAria;
 
 public class BacinoDataAdapter extends RecyclerView.Adapter<BacinoDataAdapter.ViewHolder> {
     private List<String> mItems;

@@ -23,10 +23,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 
-import java.util.List;
-
 import it.chiarani.meteotrentinoapp.R;
-import it.chiarani.meteotrentinoapp.config.Config;
 import it.chiarani.meteotrentinoapp.config.WebcamCSVList;
 import it.chiarani.meteotrentinoapp.databinding.FragmentRadarBinding;
 import it.chiarani.meteotrentinoapp.databinding.FragmentWebcamBinding;

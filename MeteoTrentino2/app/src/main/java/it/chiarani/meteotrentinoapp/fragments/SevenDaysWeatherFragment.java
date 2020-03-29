@@ -22,7 +22,6 @@ import it.chiarani.meteotrentinoapp.R;
 import it.chiarani.meteotrentinoapp.adapters.ItemClickListener;
 import it.chiarani.meteotrentinoapp.adapters.SevenDayWeatherAdapter;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
-import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.Previsione;
 import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataForecast;
 import it.chiarani.meteotrentinoapp.databinding.FragmentSevenDaysWeatherBinding;
 import it.chiarani.meteotrentinoapp.db.AppDatabase;

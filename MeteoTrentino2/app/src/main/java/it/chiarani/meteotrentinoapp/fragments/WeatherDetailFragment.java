@@ -1,22 +1,14 @@
 package it.chiarani.meteotrentinoapp.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
-import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 import io.reactivex.disposables.CompositeDisposable;
 import it.chiarani.meteotrentinoapp.AppExecutors;
@@ -29,7 +21,6 @@ import it.chiarani.meteotrentinoapp.databinding.FragmentWeatherDetailBinding;
 import it.chiarani.meteotrentinoapp.db.AppDatabase;
 import it.chiarani.meteotrentinoapp.utils.DayConverter;
 import it.chiarani.meteotrentinoapp.utils.IconConverter;
-import okhttp3.internal.Util;
 
 
 public class WeatherDetailFragment extends BottomSheetDialogFragment {

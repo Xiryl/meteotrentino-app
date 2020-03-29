@@ -12,7 +12,6 @@ import java.util.List;
 
 import it.chiarani.meteotrentinoapp.R;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel.Precipitazione;
-import it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel.TemperaturaAria;
 
 public class StationDataRainAdapter extends RecyclerView.Adapter<StationDataRainAdapter.ViewHolder> {
     private List<Precipitazione> mItems;

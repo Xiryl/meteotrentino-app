@@ -9,7 +9,6 @@ import androidx.room.Query;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
 import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataForecast;
 
 @Dao

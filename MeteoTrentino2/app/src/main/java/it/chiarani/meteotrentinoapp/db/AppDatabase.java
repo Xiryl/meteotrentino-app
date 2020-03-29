@@ -9,9 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
-import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataClouds;
 import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataForecast;
-import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataMain;
 import it.chiarani.meteotrentinoapp.db.converters.OpenWeatherDataCloudsConverter;
 import it.chiarani.meteotrentinoapp.db.converters.OpenWeatherDataCoordsConverter;
 import it.chiarani.meteotrentinoapp.db.converters.OpenWeatherDataMainConverter;
@@ -25,7 +23,7 @@ import it.chiarani.meteotrentinoapp.db.converters.PrevisioneConverter;
             MeteoTrentinoForecast.class,
             OpenWeatherDataForecast.class
         },
-        version = 1,
+        version = 3,
         exportSchema = false)
 @TypeConverters(
         {

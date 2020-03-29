@@ -8,8 +8,6 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 
 import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataClouds;
-import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataMain;
-import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataWind;
 
 public class OpenWeatherDataCloudsConverter {
     @TypeConverter

@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataCoords;
 import it.chiarani.meteotrentinoapp.api.OpenWeatherDataForecastModel.OpenWeatherDataMain;
 
 public class OpenWeatherDataMainConverter {

@@ -6,14 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 import androidx.preference.SwitchPreference;
-
-import java.io.Console;
 
 import io.reactivex.Completable;
 import io.reactivex.schedulers.Schedulers;

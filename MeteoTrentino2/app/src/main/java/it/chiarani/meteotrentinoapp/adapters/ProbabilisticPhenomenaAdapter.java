@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import it.chiarani.meteotrentinoapp.R;
-import it.chiarani.meteotrentinoapp.api.MeteoTrentinoProbabilisticModel.Fasce;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoProbabilisticModel.Fenomeni;
 
 public class ProbabilisticPhenomenaAdapter extends RecyclerView.Adapter<ProbabilisticPhenomenaAdapter.ViewHolder> {

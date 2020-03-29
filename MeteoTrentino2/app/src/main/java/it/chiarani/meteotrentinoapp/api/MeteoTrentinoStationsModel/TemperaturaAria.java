@@ -1,7 +1,5 @@
 package it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel;
 
-import com.bea.xml.stream.events.NamedEvent;
-
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;

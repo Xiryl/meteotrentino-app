@@ -1,6 +1,5 @@
 package it.chiarani.meteotrentinoapp.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -8,7 +7,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,7 +64,6 @@ import it.chiarani.meteotrentinoapp.utils.IconConverter;
 import it.chiarani.meteotrentinoapp.utils.Localities;
 import it.chiarani.meteotrentinoapp.utils.Utils;
 import it.chiarani.meteotrentinoapp.views.HomeActivity;
-import it.chiarani.meteotrentinoapp.views.MainActivity;
 
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
@@ -283,7 +280,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
         String location = filteredSuggestions.get(position).split(";")[0];
         String lat = filteredSuggestions.get(position).split(";")[3];
         String lng = filteredSuggestions.get(position).split(";")[4];
-        Toast.makeText(getActivity().getApplicationContext(), "Location:" + location, Toast.LENGTH_LONG).show();
+        // Toast.makeText(getActivity().getApplicationContext(), "Location:" + location, Toast.LENGTH_LONG).show();
 
         RetrofitAPI meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
         RetrofitAPI openWeatherDataAPI = OpenWeatherDataAPI.getInstance();
@@ -352,7 +349,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                 .setPoint(binding.searchBar)
                 .setShape(new Circle(500f))
                 .setTitle("Menu e Ricerca")
-                .setDescription("Apri il menù laterale per ottenere più funzionalità. Usa questa barra di ricerca per cambia località!")
+                .setDescription("Apri il menù laterale per ottenere più funzionalità. Utilizza questa barra di ricerca per cambiare la località!")
                 .setOnSpotlightStartedListener(new OnTargetStateChangedListener<SimpleTarget>() {
                     @Override
                     public void onStarted(SimpleTarget target) {
@@ -382,7 +379,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                 .setPoint(binding.fragmentTodayWeatherRv)
                 .setShape(new Circle(500f))
                 .setTitle("Prossime fasce orarie")
-                .setDescription("Visualizza i delle prossime fasce orarie tra oggi e domani. Premi su una fascia per visualizzare i dati.")
+                .setDescription("Visualizza i dati delle prossime fasce orarie tra oggi e domani. Premi su una fascia per visualizzare i dati.")
                 .setOnSpotlightStartedListener(new OnTargetStateChangedListener<SimpleTarget>() {
                     @Override
                     public void onStarted(SimpleTarget target) {

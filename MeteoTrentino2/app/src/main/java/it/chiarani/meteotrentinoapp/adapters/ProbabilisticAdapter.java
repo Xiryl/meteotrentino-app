@@ -1,24 +1,19 @@
 package it.chiarani.meteotrentinoapp.adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-
 import java.util.List;
 
 import it.chiarani.meteotrentinoapp.R;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoProbabilisticModel.Fasce;
-import it.chiarani.meteotrentinoapp.models.AllertItem;
 
 public class ProbabilisticAdapter extends RecyclerView.Adapter<ProbabilisticAdapter.ViewHolder> {
     private List<Fasce> mItems;

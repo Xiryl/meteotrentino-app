@@ -15,10 +15,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import java.util.List;
 
 import it.chiarani.meteotrentinoapp.R;
-import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.Giorno;
 import it.chiarani.meteotrentinoapp.models.AllertItem;
-import it.chiarani.meteotrentinoapp.utils.DayConverter;
-import it.chiarani.meteotrentinoapp.utils.IconConverter;
 
 public class AllertAdapter extends RecyclerView.Adapter<AllertAdapter.ViewHolder> {
     private List<AllertItem> mItems;
