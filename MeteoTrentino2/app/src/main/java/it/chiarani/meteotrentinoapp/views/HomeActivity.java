@@ -60,12 +60,9 @@ public class HomeActivity extends BaseActivity {
         configureTabLayout();
 
         FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            return;
-                        }
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        return;
                     }
                 });
     }

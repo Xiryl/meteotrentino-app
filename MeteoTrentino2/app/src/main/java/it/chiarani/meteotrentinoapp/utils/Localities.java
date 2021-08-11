@@ -88,7 +88,6 @@ public class Localities {
             }
         } catch (JSONException jsonEx) {
             jsonEx.printStackTrace();
-
             return new String[] {"", "", ""};
         }
         return new String[] {"", "", ""};

@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -52,29 +53,41 @@ public class WeatherDetailFragment extends BottomSheetDialogFragment {
                 inflater, R.layout.fragment_weather_detail, container, false);
         View view = binding.getRoot();
 
-        Giorno forecastDay = mforecast.getGiorni().get(mDay);
-        Fascia forecastSlot = forecastDay.getFasce().get(mSlot);
+        if(mforecast == null || mforecast.getGiorni() == null || mforecast.getGiorni().get(mDay) == null) {
+            Toast.makeText(getContext(), "Oops, an error occurred.", Toast.LENGTH_SHORT).show();
+        }
 
-        binding.fragmentWeatherDetailIcWeather.setBackgroundResource(IconConverter.getDrawableFromId(forecastDay.getIdIcona()));
+        Giorno forecastDay;
+        Fascia forecastSlot;
 
-        // header
-        binding.fragmentWeatherDetailTxtDescPrevisione.setText(String.format("%s", forecastDay.getTestoGiorno()));
-        binding.fragmentWeatherDetailTxtTime.setText(String.format("%s", DayConverter.ExtractDayFromDate(forecastDay.getGiorno())));
-        binding.fragmentWeatherDetailTxtTimeDescr.setText(String.format("%s",forecastSlot.getFasciaPer()));
+        try {
+            forecastDay = mforecast.getGiorni().get(mDay);
+            forecastSlot = forecastDay.getFasce().get(mSlot);
 
-        // temperature
-        binding.fragmentWeatherDetailTxtTempMax.setText(String.format("%s°", forecastDay.getTMaxGiorno()));
-        binding.fragmentWeatherDetailTxtTempMin.setText(String.format("%s°", forecastDay.getTMinGiorno()));
-        binding.fragmentWeatherDetailTxtZero.setText(String.format("%smt", forecastSlot.getZeroTermico()));
+            binding.fragmentWeatherDetailIcWeather.setBackgroundResource(IconConverter.getDrawableFromId(Integer.parseInt(forecastSlot.getIcona().split("_")[1].substring(0, 3))));
 
-        // rain
-        binding.fragmentWeatherDetailTxtProbPrec.setText(String.format("%s %%", descConverter(forecastSlot.getDescPrecProb())));
-        binding.fragmentWeatherDetailTxtIntPrec.setText(String.format("%s", forecastSlot.getDescPrecInten()));
-        binding.fragmentWeatherDetailTxtPercTemp.setText(String.format("%s %%", forecastSlot.getDescTempProb()));
+            // header
+            binding.fragmentWeatherDetailTxtDescPrevisione.setText(String.format("%s", forecastDay.getTestoGiorno()));
+            binding.fragmentWeatherDetailTxtTime.setText(String.format("%s", DayConverter.ExtractDayFromDate(forecastDay.getGiorno())));
+            binding.fragmentWeatherDetailTxtTimeDescr.setText(String.format("%s",forecastSlot.getFasciaPer()));
 
-        // wind
-        binding.fragmentWeatherDetailTxtVentoQuota.setText(String.format("%s/%s", forecastSlot.getDescVentoDirQuota(), forecastSlot.getDescVentoIntQuota()));
-        binding.fragmentWeatherDetailTxtVentoValle.setText(String.format("%s/%s", forecastSlot.getDescVentoDirValle(), forecastSlot.getDescVentoIntValle()));
+            // temperature
+            binding.fragmentWeatherDetailTxtTempMax.setText(String.format("%s°", forecastDay.getTMaxGiorno()));
+            binding.fragmentWeatherDetailTxtTempMin.setText(String.format("%s°", forecastDay.getTMinGiorno()));
+            binding.fragmentWeatherDetailTxtZero.setText(String.format("%smt", forecastSlot.getZeroTermico()));
+
+            // rain
+            binding.fragmentWeatherDetailTxtProbPrec.setText(String.format("%s %%", descConverter(forecastSlot.getDescPrecProb())));
+            binding.fragmentWeatherDetailTxtIntPrec.setText(String.format("%s", forecastSlot.getDescPrecInten()));
+            binding.fragmentWeatherDetailTxtPercTemp.setText(String.format("%s", forecastSlot.getDescTempProb()));
+
+            // wind
+            binding.fragmentWeatherDetailTxtVentoQuota.setText(String.format("%s/%s", forecastSlot.getDescVentoDirQuota(), forecastSlot.getDescVentoIntQuota()));
+            binding.fragmentWeatherDetailTxtVentoValle.setText(String.format("%s/%s", forecastSlot.getDescVentoDirValle(), forecastSlot.getDescVentoIntValle()));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            Toast.makeText(getContext(), "Oops, an error occurred.", Toast.LENGTH_SHORT).show();
+        }
 
         return view;
     }

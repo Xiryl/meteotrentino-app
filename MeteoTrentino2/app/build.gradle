@@ -11,8 +11,8 @@ android {
         applicationId "it.chiarani.meteotrentinoapp"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 43
-        versionName "4.0"
+        versionCode 50
+        versionName "4.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     dataBinding {
@@ -43,15 +43,12 @@ dependencies {
     // support design
     implementation 'com.google.android.material:material:1.1.0'
 
-    // Tab Layout
-    implementation "com.google.android.material:material:1.1.0"
-
     // Retrofit
     // https://square.github.io/retrofit/
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
-    compile 'com.squareup.retrofit2:converter-simplexml:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-simplexml:2.5.0'
 
     // gson
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -110,5 +107,7 @@ dependencies {
     implementation 'com.github.takusemba:spotlight:1.6.1'
 
     implementation 'com.github.hotchemi:android-rate:1.0.1'
+
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 }

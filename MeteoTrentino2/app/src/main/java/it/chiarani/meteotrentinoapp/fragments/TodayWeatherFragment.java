@@ -171,7 +171,8 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                     runSpotlight();
 
                 }, throwable -> {
-                    Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
+                    throwable.printStackTrace();
+                    Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto" + throwable, Toast.LENGTH_SHORT).show();
                 })
         );
     }
@@ -179,9 +180,12 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
     private void bindOpenWeatherData() {
         mDisposable.add(mAppDatabase.openWeatherDataForecastDao().getAsList()
                 .subscribeOn(Schedulers.io())
-                .take(1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(forecasts -> {
+
+                    if(forecasts.isEmpty()) {
+                        return;
+                    }
 
                     mOpenForecast = forecasts.get(forecasts.size()-1);
 
@@ -204,7 +208,8 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                     binding.fragmentWeatherDetailTxtSunset.setText(String.format("%s:%s", calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
 
                 }, throwable -> {
-                    Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
+                    throwable.printStackTrace();
+                    Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto:" + throwable, Toast.LENGTH_SHORT).show();
                 })
         );
     }
@@ -298,7 +303,8 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
                     mAppExecutors.diskIO().execute(() -> mAppDatabase.openWeatherDataForecastDao().insert(model));
                     this.startActivity(new Intent(getActivity().getApplicationContext(), HomeActivity.class));
                 }, err -> {
-                    Toast.makeText(getActivity().getApplicationContext(), "Oops, qualcosa è andato storto" + err, Toast.LENGTH_SHORT).show();
+                    err.printStackTrace();
+                    Toast.makeText(getActivity().getApplicationContext(), "Oops, qualcosa è andato storto (err1)", Toast.LENGTH_SHORT).show();
                 }));
     }
 
@@ -327,6 +333,13 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
             case R.id.nav_menu_dati_staz: FragmentLauncher.launch(new StationDataFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_dighe: FragmentLauncher.launch(new DamsAndRiverFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_webcam: FragmentLauncher.launch(new WebcamFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
+            case R.id.nav_menu_telegram: {
+                String url = "https://www.t.me/meteotrentinobot";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+                dwLayout.closeDrawer(GravityCompat.START);
+            } break;
             case R.id.nav_menu_impostaz: FragmentLauncher.launch(new SettingsFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_faq: FragmentLauncher.launch(new FaqFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;
             case R.id.nav_menu_supporto: FragmentLauncher.launch(new DonationFragment(), getFragmentManager()); dwLayout.closeDrawer(GravityCompat.START); break;

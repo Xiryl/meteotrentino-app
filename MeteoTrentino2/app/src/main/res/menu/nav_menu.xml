@@ -34,9 +34,14 @@
             android:title="Dighe e Bacini" />
 
         <item
-            android:id="@+id/nav_menu_webcam"
-            android:icon="@drawable/ic_webcam"
-            android:title="Webcam" />
+        android:id="@+id/nav_menu_webcam"
+        android:icon="@drawable/ic_webcam"
+        android:title="Webcam" />
+
+        <item
+            android:id="@+id/nav_menu_telegram"
+            android:icon="@drawable/ic_telegram"
+            android:title="Telegram Bot" />
     </group>
         <group android:id="@+id/grp1" android:checkableBehavior="single" >
 
@@ -58,8 +63,7 @@
             <item
                 android:id="@+id/nav_menu_tag"
                 android:icon="@drawable/ic_tag"
-                android:title="V. 1.0.0" />
-
+                android:title="V. 4.6" />
 
         </group>
 </menu>

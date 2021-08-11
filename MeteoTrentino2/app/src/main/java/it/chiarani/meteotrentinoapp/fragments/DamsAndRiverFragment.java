@@ -211,7 +211,7 @@ public class DamsAndRiverFragment extends Fragment {
         if(mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getPluviometro() == null ||!mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getPluviometro().getApiPluviometro().isEmpty()) {
             convertedSensors.add("Pluviometro");
         }
-        if(mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getPortata() == null ||!mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getPortata().getApiPortata().isEmpty()) {
+        if(mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getPortata() == null || !mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getPortata().getApiPortata().isEmpty()) {
             convertedSensors.add("Portata");
         }
         if(mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getRadiometro() == null ||!mListaBacini.getBacini().get(bacinoIndex).getStazioni().get(stationIndex).getSensori().getRadiometro().getApiRadiometro().isEmpty()){

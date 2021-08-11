@@ -79,7 +79,7 @@ public class SevenDaysWeatherFragment extends Fragment implements ItemClickListe
                     mAdapter = new SevenDayWeatherAdapter(tmpMeteoTrentinoForecast.getPrevisione().get(0).getGiorni(), this::onItemClick);
                     binding.fragmentSevenDaysWeatherRv.setAdapter(mAdapter);
                 }, throwable -> {
-                    Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
+
                 })
         );
 
@@ -90,7 +90,8 @@ public class SevenDaysWeatherFragment extends Fragment implements ItemClickListe
                 .subscribe(forecasts -> {
                     mOpenForecast = forecasts.get(forecasts.size() -1);
                 }, throwable -> {
-                    Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto", Toast.LENGTH_SHORT).show();
+                    throwable.printStackTrace();
+                    Toast.makeText(this.getActivity().getApplicationContext(), "Oops, qualcosa è andato storto" + throwable, Toast.LENGTH_SHORT).show();
                 })
         );
 
@@ -117,6 +118,5 @@ public class SevenDaysWeatherFragment extends Fragment implements ItemClickListe
     @Override
     public void onResume() {
         super.onResume();
-        int x = 1;
     }
 }

@@ -70,7 +70,14 @@ public class AvalancheFragment extends Fragment {
             month = "" + (calendar.get(Calendar.MONTH)+1);
         }
 
-        String todayDate = String.format("%s-%s-%s", calendar.get(Calendar.YEAR), month, calendar.get(Calendar.DAY_OF_MONTH));
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        String correctDay = "";
+        if(day <= 9) {
+            correctDay = String.format("0%s", day);
+        } else {
+            correctDay = day + "";
+        }
+        String todayDate = String.format("%s-%s-%s", calendar.get(Calendar.YEAR), month, correctDay);
 
         mDisposable.add(avalancheAPI.getAvalancheReport(todayDate)
                 .subscribeOn(Schedulers.io())

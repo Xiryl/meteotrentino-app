@@ -112,10 +112,12 @@ public class StationDataFragment extends Fragment {
                 mAdapter.notifyDataSetChanged();
                 // setTemperatureGraph(mDatiOggi);
             } else {
-                Collections.reverse(mDatiOggi.getTemperature().temperaturaAria());
-                StationDataRainAdapter mAdapter = new StationDataRainAdapter(mDatiOggi.getPrecipitazioni().getPrecipitazione());
-                binding.fragmentStationDataRv.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
+                if(mDatiOggi.getTemperature() != null && mDatiOggi.getTemperature().temperaturaAria() != null) {
+                    Collections.reverse(mDatiOggi.getTemperature().temperaturaAria());
+                    StationDataRainAdapter mAdapter = new StationDataRainAdapter(mDatiOggi.getPrecipitazioni().getPrecipitazione());
+                    binding.fragmentStationDataRv.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
+                }
                // setRainGraph(mDatiOggi);
             }
         });

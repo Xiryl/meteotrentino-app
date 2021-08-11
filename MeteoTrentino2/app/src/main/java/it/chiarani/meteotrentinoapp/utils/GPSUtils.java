@@ -8,9 +8,16 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,7 +85,7 @@ public class GPSUtils {
 
         Location location = getLastKnownLocation(lm, context);
         if(location == null) {
-            return new String[]{"", "", ""};
+            return new String[]{"noLocation", "", ""};
         }
 
         double lng = location.getLongitude();
