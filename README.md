@@ -2,7 +2,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
 
 
- > Download from [playstore](https://play.google.com/store/apps/details?id=it.chiarani.meteotrentinoapp) <
+ > Download it from [playstore](https://play.google.com/store/apps/details?id=it.chiarani.meteotrentinoapp)!
 
 
 # Screenshot
