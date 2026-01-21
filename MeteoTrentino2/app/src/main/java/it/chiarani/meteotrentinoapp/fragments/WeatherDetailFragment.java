@@ -93,6 +93,12 @@ public class WeatherDetailFragment extends BottomSheetDialogFragment {
     }
 
     private String descConverter(String desc) {
+        if (desc == null) {
+            return "--";
+        }
+        if (desc.matches("\\d+")) {
+            return desc;
+        }
         switch (desc.toLowerCase()) {
             case "molto bassa": return "0-25";
             case "bassa": return "25-50";

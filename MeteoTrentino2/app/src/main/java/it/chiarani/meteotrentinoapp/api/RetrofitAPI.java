@@ -5,7 +5,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import it.chiarani.meteotrentinoapp.api.AvalancheModel.AvalancheModel;
 import it.chiarani.meteotrentinoapp.api.BaciniModel.ListaBacini;
-import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
+import it.chiarani.meteotrentinoapp.api.MeteoReportForecastModel.MeteoReportForecast;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoProbabilisticModel.MeteoTrentinoProbabilisticModel;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel.ArrayOfAnagrafica;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoStationsModel.DatiOggi;
@@ -16,9 +16,9 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface RetrofitAPI {
-    @GET("previsioneOpenDataLocalita")
-    Observable<MeteoTrentinoForecast> getMeteoTrentinoForecast(
-            @Query("localita") String location
+    @GET("{venueId}.json")
+    Observable<MeteoReportForecast> getMeteoTrentinoForecast(
+            @Path("venueId") String venueId
     );
 
     @GET("previsioneOpenDataProbabilistico ")

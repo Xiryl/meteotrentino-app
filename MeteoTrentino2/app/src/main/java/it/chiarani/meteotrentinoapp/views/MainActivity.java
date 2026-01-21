@@ -50,6 +50,7 @@ import io.reactivex.schedulers.Schedulers;
 import it.chiarani.meteotrentinoapp.AppExecutors;
 import it.chiarani.meteotrentinoapp.MeteoTrentinoApp;
 import it.chiarani.meteotrentinoapp.R;
+import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.MeteoReportForecastMapper;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoAPI;
 import it.chiarani.meteotrentinoapp.api.OpenWeatherDataAPI;
 import it.chiarani.meteotrentinoapp.api.RetrofitAPI;
@@ -219,7 +220,8 @@ public class MainActivity extends BaseActivity {
     private void retriveDataAndNext(String[] mLocation, RetrofitAPI meteoTrentinoAPI, RetrofitAPI openWeatherDataAPI) {
         //binding.activityMainAnim.setAnimation(R.raw.anim_scan);
 
-        mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(mLocation[0])
+        String venueId = Localities.getVenueIdFromLocation(mLocation[0]);
+        mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(venueId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError( err -> {
@@ -228,7 +230,8 @@ public class MainActivity extends BaseActivity {
                     binding.activityMainDescr.setText("Oops. Controlla la rete e riprova.");
                 })
                 .subscribe(model -> {
-                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(model));
+                    MeteoTrentinoForecast mappedForecast = MeteoReportForecastMapper.toMeteoTrentinoForecast(mLocation[0], model);
+                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(mappedForecast));
                     openWeatherDataAPI.getOpenWeatherDataForecast(Config.OPENWEATHERDATA_API_KEY, mLocation[1], mLocation[2])
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
@@ -287,5 +290,3 @@ public class MainActivity extends BaseActivity {
                 }));
     }
 }
-
-

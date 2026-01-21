@@ -47,6 +47,7 @@ import it.chiarani.meteotrentinoapp.adapters.CustomSuggestionsAdapter;
 import it.chiarani.meteotrentinoapp.adapters.ItemClickListener;
 import it.chiarani.meteotrentinoapp.adapters.SlotWeatherAdapter;
 import it.chiarani.meteotrentinoapp.adapters.SuggestionItemClickListener;
+import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.MeteoReportForecastMapper;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoAPI;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.Fascia;
 import it.chiarani.meteotrentinoapp.api.MeteoTrentinoForecastModel.MeteoTrentinoForecast;
@@ -283,6 +284,7 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
     @Override
     public void onSuggestionItemClick(int position) {
         String location = filteredSuggestions.get(position).split(";")[0];
+        String venueId = Localities.getVenueIdFromLocation(location);
         String lat = filteredSuggestions.get(position).split(";")[3];
         String lng = filteredSuggestions.get(position).split(";")[4];
         // Toast.makeText(getActivity().getApplicationContext(), "Location:" + location, Toast.LENGTH_LONG).show();
@@ -290,11 +292,12 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
         RetrofitAPI meteoTrentinoAPI = MeteoTrentinoAPI.getInstance();
         RetrofitAPI openWeatherDataAPI = OpenWeatherDataAPI.getInstance();
 
-        mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(location)
+        mDisposable.add(meteoTrentinoAPI.getMeteoTrentinoForecast(venueId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(model -> {
-                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(model));
+                    MeteoTrentinoForecast mappedForecast = MeteoReportForecastMapper.toMeteoTrentinoForecast(location, model);
+                    mAppExecutors.diskIO().execute(() -> mAppDatabase.forecastDao().insert(mappedForecast));
                     return openWeatherDataAPI.getOpenWeatherDataForecast(Config.OPENWEATHERDATA_API_KEY, lat, lng)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread());
@@ -314,6 +317,12 @@ public class TodayWeatherFragment extends Fragment implements ItemClickListener,
     }
 
     private String descConverter(String desc) {
+        if (desc == null) {
+            return "--";
+        }
+        if (desc.matches("\\d+")) {
+            return desc;
+        }
         switch (desc.toLowerCase()) {
             case "molto bassa": return "0-25";
             case "bassa": return "25-50";

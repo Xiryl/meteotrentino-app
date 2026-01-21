@@ -1,7 +1,7 @@
 package it.chiarani.meteotrentinoapp.config;
 
 public class Config {
-    public final static String METEOTRENTINO_BASE_ENDPOINT = "https://www.meteotrentino.it/protcivtn-meteo/api/front/";
+    public final static String METEOTRENTINO_BASE_ENDPOINT = "https://meteo.report/var/data/forecasts/";
     public final static String OPENWEATHERDATA_BASE_ENDPOINT = "https://api.openweathermap.org/data/2.5/";
     public final static String PROTEZIONECIVILE_ALLERTE = "https://avvisi.protezionecivile.tn.it/";
     public final static String AVALANCHE_REPORT = "https://avalanche.report/albina_files/";
@@ -9,6 +9,7 @@ public class Config {
     public static final String CHIARANI_API       = "https://www.chiarani.it/api/";
     public static final String DAMS_AND_RIVERS_API       = "https://www.floods.it/public/";
     public static final String PROB_DOWNLOAD_BULLETTIN   = "https://www.meteotrentino.it/protcivtn-meteo/api/front/bollettinoProb?idPrevisione=";
+    public static final String METEOREPORT_DEFAULT_VENUE_ID = "88c9882b-33f3-4d83-b2ed-cd946b774673";
     public final static String OPENWEATHERDATA_API_KEY = "e3ed2ef941a7db312f53eb848c35ee62";
     public static final String IMG_RADAR = "https://content.meteotrentino.it/dati-meteo/radar/home/mosaico.gif?r={{vm_h.random}}?rnd=1591167127975";
     public static final String IMG_INFR_EUROPE = "http://api.sat24.com/animated/ALPS/infraPolair/1/Central%20European%20Standard%20Time/493234";
